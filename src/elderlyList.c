@@ -1,3 +1,4 @@
+// Elderly list functions implementation
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,22 +8,33 @@
 #include "../include/fileManager.h"
 #include "../include/sensorsData.h"
 
+// defining cell type
 typedef struct cell Cell;
 
+// sentinel 
 struct elderly_list {
 
     Cell * first;
     Cell * last;
 };
 
+// cell structure
 struct cell {
 
     Elderly * elderly;
     Cell * next;
 };
 
-//====================================================================//
-// Private funcion=========================================//
+
+//====================================Private funcion=========================================//
+/*
+#Function to insert only one elderly in to the list#
+
+-> It can not be accessed by main function, because elderlies can be added in to the
+list by files only
+
+*Main function doesn't has "elderly.h" 
+*/
 void InsertOneElderly(ElderlyList * list, Elderly * elderly){
 
     Cell * newCell = malloc(sizeof(Cell));
@@ -45,6 +57,8 @@ void InsertOneElderly(ElderlyList * list, Elderly * elderly){
 
 
 // .h functions =========================================================//
+
+// #Function to create a void elderly list#
 ElderlyList * CreateElderlyList(){
 
     ElderlyList * list = calloc(1,sizeof(ElderlyList));
@@ -54,14 +68,18 @@ ElderlyList * CreateElderlyList(){
     return list;
 }
 
+/* 
+#Function to insert all elderlies read from 'apoio.txt' in to the list#
+
+-> This function gets names from "apoio.txt" first line, uses these names to open
+files that have elderlies names on name, get the data to create a new elderly and 
+put in to the list.
+*/
 ElderlyList * InsertElderliesIntoList(ElderlyList * list, char ** argv){
 
     // variables declaration
     char * name, firstLine[100], elderlyFileWay[50];
     FILE * elderlyFile;
-
-    Elderly * fulano;
-    SensorsData ** dados;
 
 
     // separating names from first line
@@ -73,13 +91,9 @@ ElderlyList * InsertElderliesIntoList(ElderlyList * list, char ** argv){
         elderlyFile = fopen(elderlyFileWay, "r");
 
         // Inserting elderlies into list one at time
-        // InsertOneElderly(list, RegisterElderly(name,
-        //                        CreateSensorsDataArray(NumberOfReadings(argv), elderlyFile),
-        //                        NumberOfReadings(argv)));
-
-        dados = CreateSensorsDataArray(NumberOfReadings(argv), elderlyFile);
-        fulano = RegisterElderly(name, dados, NumberOfReadings(argv));
-        InsertOneElderly(list, fulano);
+        InsertOneElderly(list, RegisterElderly(name,
+                               CreateSensorsDataArray(NumberOfReadings(argv), elderlyFile),
+                               NumberOfReadings(argv)));
         
         fclose(elderlyFile);
 
@@ -90,6 +104,11 @@ ElderlyList * InsertElderliesIntoList(ElderlyList * list, char ** argv){
     return list;
 }
 
+/* 
+#Function to print elderly list#
+
+-> Only the names will be printed.
+*/
 void PrintElderlyList(ElderlyList * list){
 
     Cell * current = list->first;
