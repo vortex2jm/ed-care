@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "../include/validation.h"
 
 int ValidateArg(int argc){

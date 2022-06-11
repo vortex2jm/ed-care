@@ -6,9 +6,11 @@ typedef struct elderly_list ElderlyList;
 
 ElderlyList * CreateElderlyList();
 
-void InsertOnElderlyList(ElderlyList * list, Elderly * elderly);
+ElderlyList * InsertElderliesIntoList(ElderlyList * list, char ** argv);
 
 void RemoveElderlyFromList(ElderlyList * list, char * nome);
+
+void PrintElderlyList(ElderlyList * list);
 
 void DestructElderlyList(ElderlyList * list);
 

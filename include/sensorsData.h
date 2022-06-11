@@ -3,7 +3,9 @@
 
 typedef struct sensors SensorsData;
 
-SensorsData * RegisterSensorsData(float temperature, long int latitude, long int longitude, int fall);
+SensorsData ** CreateSensorsDataArray(int size, FILE * file);
+
+void PrintData(SensorsData * data);
 
 void DeleteSensorsData(SensorsData * data);
 

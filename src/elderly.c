@@ -24,22 +24,14 @@ Elderly * RegisterElderly(char * name, SensorsData ** data, int dataAmount){
     return newElderly;
 }
 
+void PrintElderly(Elderly * elderly){
 
-Elderly * CreateVoidElderly(){
+    if(elderly == NULL) printf("Elderly do not exists!\n\n");
 
-    Elderly * newElderly = (Elderly*) malloc(sizeof(Elderly));
-    newElderly->name = NULL;
-
-    return newElderly;
+    else if(elderly->name == NULL) printf("Elderly without name!\n\n");
+    
+    else printf("nome do idoso: %s\n", elderly->name);
 }
-
-
-void SetElderlyName(Elderly * elderly, char * name){
-
-    if(!elderly->name) elderly->name = strdup(name);
-    else strcpy(elderly->name, name);
-}
-
 
 void KillElderly(Elderly * elderly){
 
