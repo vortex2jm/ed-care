@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../include/validation.h"
 #include "../include/elderlyList.h"
+#include "../include/caregiverList.h"
 
 
 ///======================================Main=========================================//
@@ -13,12 +14,16 @@ int main(int argc, char ** argv){
     ValidateArg(argc);
 
     ElderlyList * elderlyList = CreateElderlyList();
+    CareList * caregiverList = CreateCareList();
 
-    InsertElderliesIntoList(elderlyList, argv);
+    InsertElderliesFromFileIntoList(elderlyList, argv);
+    InsertCaregiversFromFileIntoList(caregiverList, argv);
+
 
     PrintElderlyList(elderlyList);
+    PrintCaregiversList(caregiverList);
 
-    Friends_Elders(elderlyList);
+    // Friends_Elders(elderlyList);
     
     return 0;
 }

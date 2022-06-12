@@ -1,28 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char * SupportFileFirstLine(char * way, char * firstLine){
+char * FileFirstLine(char * way){
 
-    FILE * supportFile;
+    FILE * file;
     char directory[30];
-    // static char fisrtLine[100];
+    static char firstLine[100];
 
-    sprintf(directory, "%s/apoio.txt", way);
-    supportFile = fopen(directory, "r");
+    sprintf(directory, "%s", way);
+    file = fopen(directory, "r");
 
-    fscanf(supportFile, "%[^\n]\n", firstLine);
+    fscanf(file, "%[^\n]\n", firstLine);
 
-    fclose(supportFile);
+    fclose(file);
 
     return firstLine;
-}
-
-
-
-void OpenElderlyFile(char * name, char * way, FILE * file){
-
-    char directory[50];
-    sprintf(directory, "%s/%s.txt", way, name);
-
-    file = fopen(directory,"r");
 }

@@ -3,7 +3,12 @@
 
 typedef struct caregiver Caregiver;
 
-Caregiver * RegisterCaregiver(char * name, long int latitude, long int longitude);
+Caregiver * RegisterCaregiver(char * name, long int ** coordinates, int size);
+
+long int ** CareGiverDataReading(FILE * file, int size);
+
+
+void PrintCareGiver(Caregiver * caregiver);
 
 void EliminateCaregiver(Caregiver * caregiver);
 

@@ -67,7 +67,7 @@ void InsertOneElderly(ElderlyList * list, Elderly * elderly,Friends_List * frien
 
 // .h functions =========================================================//
 
-// #Function to create a void elderly list#
+
 ElderlyList * CreateElderlyList(){
 
     ElderlyList * list = calloc(1,sizeof(ElderlyList));
@@ -77,23 +77,18 @@ ElderlyList * CreateElderlyList(){
     return list;
 }
 
-/* 
-#Function to insert all elderlies read from 'apoio.txt' in to the list#
 
--> This function gets names from "apoio.txt" first line, uses these names to open
-files that have elderlies names on name, get the data to create a new elderly and 
-put in to the list.
-*/
-ElderlyList * InsertElderliesIntoList(ElderlyList * list, char ** argv){
+
+
+ElderlyList * InsertElderliesFromFileIntoList(ElderlyList * list, char ** argv){
 
     // variables declaration
-    char * name, firstLine[100], elderlyFileWay[50];
+    char * name, elderlyFileWay[50];
     FILE * elderlyFile;
-    
 
 
     // separating names from first line
-    name = strtok(SupportFileFirstLine("./tests/Teste1/Entradas", firstLine),";"); 
+    name = strtok(FileFirstLine("./tests/Teste1/Entradas/apoio.txt"),";"); 
 
     while(name != NULL){
         
@@ -116,6 +111,33 @@ ElderlyList * InsertElderliesIntoList(ElderlyList * list, char ** argv){
 
     return list;
 }
+
+
+
+
+
+void PrintElderlyList(ElderlyList * list){
+
+    Cell * current = list->first;
+    Cell * aux;
+
+    if(!list->first) {
+
+        printf("Void list!\n\n");
+        return;
+    }
+    
+    while(current){
+
+        aux = current->next;
+        PrintElderly(current->elderly);
+        current = aux;
+    }
+}
+
+
+
+
 
 ElderlyList * Friends_Elders(ElderlyList * list){
     FILE * supportFile;
@@ -140,26 +162,4 @@ ElderlyList * Friends_Elders(ElderlyList * list){
 
 
 
-/* 
-#Function to print elderly list#
 
--> Only the names will be printed.
-*/
-void PrintElderlyList(ElderlyList * list){
-
-    Cell * current = list->first;
-    Cell * aux;
-
-    if(!list->first) {
-
-        printf("Void list!\n\n");
-        return;
-    }
-    
-    while(current){
-
-        aux = current->next;
-        PrintElderly(current->elderly);
-        current = aux;
-    }
-}
