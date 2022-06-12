@@ -5,4 +5,6 @@ char * SupportFileFirstLine(char * way, char * firstLine);
 
 void OpenElderlyFile(char * name, char * way, FILE * file);
 
+
+
 #endif

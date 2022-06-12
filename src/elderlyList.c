@@ -7,6 +7,7 @@
 #include "../include/elderly.h"
 #include "../include/fileManager.h"
 #include "../include/sensorsData.h"
+#include "../include/friendsElders.h"
 
 // defining cell type
 typedef struct cell Cell;
@@ -16,6 +17,7 @@ struct elderly_list {
 
     Cell * first;
     Cell * last;
+    
 };
 
 // cell structure
@@ -23,6 +25,9 @@ struct cell {
 
     Elderly * elderly;
     Cell * next;
+    Friends_List * friends;
+    
+
 };
 
 
@@ -35,22 +40,26 @@ list by files only
 
 *Main function doesn't has "elderly.h" 
 */
-void InsertOneElderly(ElderlyList * list, Elderly * elderly){
-
+void InsertOneElderly(ElderlyList * list, Elderly * elderly,Friends_List * friends_list){
+     
     Cell * newCell = malloc(sizeof(Cell));
     newCell->elderly = elderly;
+    //newCell->pointerFriends = 
+    newCell->friends = friends_list;
     
     if(!list->first){
 
         list->first = newCell;
         list->last = newCell;
         newCell->next = NULL;
+        
     }
 
     else{
-
-        newCell->next = list->first;
-        list->first = newCell;
+        list->last->next = newCell;
+        list->last = newCell;
+        newCell->next = NULL;
+        
     }
 }
 
@@ -80,6 +89,7 @@ ElderlyList * InsertElderliesIntoList(ElderlyList * list, char ** argv){
     // variables declaration
     char * name, firstLine[100], elderlyFileWay[50];
     FILE * elderlyFile;
+    
 
 
     // separating names from first line
@@ -89,11 +99,13 @@ ElderlyList * InsertElderliesIntoList(ElderlyList * list, char ** argv){
         
         sprintf(elderlyFileWay, "./tests/Teste1/Entradas/%s.txt", name);
         elderlyFile = fopen(elderlyFileWay, "r");
-
+        
+        
         // Inserting elderlies into list one at time
         InsertOneElderly(list, RegisterElderly(name,
                                CreateSensorsDataArray(NumberOfReadings(argv), elderlyFile),
-                               NumberOfReadings(argv)));
+                               NumberOfReadings(argv)),
+                               CreateFriendsElderlyList());
         
         fclose(elderlyFile);
 
@@ -101,8 +113,32 @@ ElderlyList * InsertElderliesIntoList(ElderlyList * list, char ** argv){
         name = strtok(NULL, ";");   
     }
 
+
     return list;
 }
+
+ElderlyList * Friends_Elders(ElderlyList * list){
+    FILE * supportFile;
+    char string[100],firstLine[30],*aux;
+
+    supportFile = fopen("./tests/Teste1/Entradas/apoio.txt", "r");
+    fscanf(supportFile, "%[^\n]\n", firstLine);
+
+    //int i = 0;
+    while(fscanf(supportFile,"%[^\n]\n",string) != EOF){
+        aux = strtok(string,";");
+        while(aux != NULL){
+            
+            printf("%s",aux);
+            aux = strtok(NULL,";");
+        };
+        printf("\n");
+    };
+    
+    return list;
+}
+
+
 
 /* 
 #Function to print elderly list#

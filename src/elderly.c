@@ -10,6 +10,7 @@ struct elderly {
     char * name;
     SensorsData ** data;
     int dataAmount;
+
 };
 
 
@@ -32,6 +33,7 @@ void PrintElderly(Elderly * elderly){
     
     else printf("nome do idoso: %s\n", elderly->name);
 }
+
 
 void KillElderly(Elderly * elderly){
 

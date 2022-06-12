@@ -17,6 +17,8 @@ char * SupportFileFirstLine(char * way, char * firstLine){
     return firstLine;
 }
 
+
+
 void OpenElderlyFile(char * name, char * way, FILE * file){
 
     char directory[50];

@@ -49,6 +49,8 @@ SensorsData ** CreateSensorsDataArray(int size, FILE * file){
         } 
         
         data[x] = RegisterSensorsData(temperature, latitude, longitude, fall);  // Filling sensors data array
+        
+        
     }
 
     return data;
@@ -57,8 +59,12 @@ SensorsData ** CreateSensorsDataArray(int size, FILE * file){
 void PrintData(SensorsData * data){
 
     if(!data) return;
-
+    //TEST ...........................
+    printf("%ld %ld %d %.2f\n", data->coordinates[0], data->coordinates[1], data->fall,data->temperature);
+    
+    /*
     printf("%ld %ld\n", data->coordinates[0], data->coordinates[1]);
     printf("queda: %d\n", data->fall);
     printf("temperatura: %.2f\n\n", data->temperature);
+    */
 }

@@ -14,4 +14,8 @@ void PrintElderlyList(ElderlyList * list);
 
 void DestructElderlyList(ElderlyList * list);
 
+ElderlyList * Friends_Elders(ElderlyList * list);
+
+
+
 #endif

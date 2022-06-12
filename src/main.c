@@ -17,6 +17,8 @@ int main(int argc, char ** argv){
     InsertElderliesIntoList(elderlyList, argv);
 
     PrintElderlyList(elderlyList);
+
+    Friends_Elders(elderlyList);
     
     return 0;
 }
