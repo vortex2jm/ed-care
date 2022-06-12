@@ -49,7 +49,7 @@ Friends_List * InsertFriendsElderliesIntoList(Elderly * list,Friends_List * frie
         friends->last = friend;
         friend->next = NULL;
     }
-    printf("--%s\n",Return_name(friend->elderly));
+    
     return friends;
 }
 

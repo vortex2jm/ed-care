@@ -30,7 +30,7 @@ struct cell {
 
 };
 
-
+Cell * Return_position_Elder(Cell *friend,char string[50],Elderly * elder);
 //====================================Private funcion=========================================//
 /*
 #Function to insert only one elderly in to the list#
@@ -123,7 +123,7 @@ ElderlyList * Friends_Elders(ElderlyList * list){
     Cell * friends1 = list->first,* friends2 = list->first;
     int i = 0;
     
-    //
+    
     supportFile = fopen("./tests/Teste2/Entradas/apoio.txt", "r");
     fscanf(supportFile, "%[^\n]\n", firstLine);
     
@@ -135,16 +135,8 @@ ElderlyList * Friends_Elders(ElderlyList * list){
             assistant = strtok(NULL,";");
         };
         
-
-        while(friends1 != NULL && strcmp(string1,Return_name(friends1->elderly)) != 0){
-            friends1 = friends1->next; 
-        };
-        
-        
-        while(friends2 != NULL && strcmp(string2,Return_name(friends2->elderly)) != 0){
-            friends2 = friends2->next; 
-        };
-        
+        friends1 = Return_position_Elder(friends1, string1,friends1->elderly);
+        friends2 = Return_position_Elder(friends2, string2,friends2->elderly);
         
         friends2->friends = InsertFriendsElderliesIntoList(friends1->elderly,friends2->friends);
         friends1->friends = InsertFriendsElderliesIntoList(friends2->elderly,friends1->friends);
@@ -156,6 +148,13 @@ ElderlyList * Friends_Elders(ElderlyList * list){
     
     
     return list;
+}
+
+Cell * Return_position_Elder(Cell *friend,char string[50],Elderly * elder){
+    while(friend != NULL && strcmp(string,Return_name(friend->elderly)) != 0){
+            friend = friend->next; 
+    };
+    return friend;
 }
 
  
