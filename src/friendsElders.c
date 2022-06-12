@@ -29,3 +29,37 @@ Friends_List * CreateFriendsElderlyList(){
     
     return list;
 }
+
+
+
+Friends_List * InsertFriendsElderliesIntoList(Elderly * list,Friends_List * friends){
+    
+    Friends_Cell *friend = malloc(sizeof(Friends_Cell));
+    friend->elderly = list;
+    
+
+    if (friends->first == NULL){
+        friends->first = friend;
+        friends->last = friend;
+        friend->next = NULL;
+
+    }
+    else {
+        friends->last->next = friend;
+        friends->last = friend;
+        friend->next = NULL;
+    }
+    printf("--%s\n",Return_name(friend->elderly));
+    return friends;
+}
+
+
+void PrintTest(Friends_List * friends,char * name){
+    Friends_Cell *friend = friends->first;
+    
+    printf("\n%s :",name);
+    while(friend != NULL){
+        printf("%s ",Return_name(friend->elderly));
+        friend = friend->next;
+    };
+}

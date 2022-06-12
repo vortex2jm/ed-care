@@ -4,7 +4,7 @@
 char * SupportFileFirstLine(char * way, char * firstLine){
 
     FILE * supportFile;
-    char directory[30];
+    char directory[50];
     // static char fisrtLine[100];
 
     sprintf(directory, "%s/apoio.txt", way);

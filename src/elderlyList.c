@@ -43,8 +43,8 @@ list by files only
 void InsertOneElderly(ElderlyList * list, Elderly * elderly,Friends_List * friends_list){
      
     Cell * newCell = malloc(sizeof(Cell));
+    
     newCell->elderly = elderly;
-    //newCell->pointerFriends = 
     newCell->friends = friends_list;
     
     if(!list->first){
@@ -93,11 +93,11 @@ ElderlyList * InsertElderliesIntoList(ElderlyList * list, char ** argv){
 
 
     // separating names from first line
-    name = strtok(SupportFileFirstLine("./tests/Teste1/Entradas", firstLine),";"); 
+    name = strtok(SupportFileFirstLine("./tests/Teste2/Entradas", firstLine),";"); 
 
     while(name != NULL){
         
-        sprintf(elderlyFileWay, "./tests/Teste1/Entradas/%s.txt", name);
+        sprintf(elderlyFileWay, "./tests/Teste2/Entradas/%s.txt", name);
         elderlyFile = fopen(elderlyFileWay, "r");
         
         
@@ -119,23 +119,53 @@ ElderlyList * InsertElderliesIntoList(ElderlyList * list, char ** argv){
 
 ElderlyList * Friends_Elders(ElderlyList * list){
     FILE * supportFile;
-    char string[100],firstLine[30],*aux;
-
-    supportFile = fopen("./tests/Teste1/Entradas/apoio.txt", "r");
+    char lineFile[100],firstLine[100],*assistant,string1[50],string2[50];
+    Cell * friends1 = list->first,* friends2 = list->first;
+    int i = 0;
+    
+    //
+    supportFile = fopen("./tests/Teste2/Entradas/apoio.txt", "r");
     fscanf(supportFile, "%[^\n]\n", firstLine);
-
-    //int i = 0;
-    while(fscanf(supportFile,"%[^\n]\n",string) != EOF){
-        aux = strtok(string,";");
-        while(aux != NULL){
-            
-            printf("%s",aux);
-            aux = strtok(NULL,";");
+    
+    while(fscanf(supportFile,"%[^\n]\n",lineFile) != EOF){
+        assistant = strtok(lineFile,";");
+        while(assistant != NULL){
+            if (i == 0){strcpy(string1,assistant); i = 1;}
+            else {strcpy(string2,assistant); i = 0;}
+            assistant = strtok(NULL,";");
         };
-        printf("\n");
+        
+
+        while(friends1 != NULL && strcmp(string1,Return_name(friends1->elderly)) != 0){
+            friends1 = friends1->next; 
+        };
+        
+        
+        while(friends2 != NULL && strcmp(string2,Return_name(friends2->elderly)) != 0){
+            friends2 = friends2->next; 
+        };
+        
+        
+        friends2->friends = InsertFriendsElderliesIntoList(friends1->elderly,friends2->friends);
+        friends1->friends = InsertFriendsElderliesIntoList(friends2->elderly,friends1->friends);
+        
+        friends1 = list->first; 
+        friends2 = list->first;
     };
     
+    
+    
     return list;
+}
+
+ 
+void Imprimi (ElderlyList * list){
+    Cell * assistant = list->first;
+
+    while(assistant != NULL){
+        PrintTest(assistant->friends,Return_name(assistant->elderly));
+        assistant = assistant->next;
+    };
 }
 
 

@@ -34,6 +34,9 @@ void PrintElderly(Elderly * elderly){
     else printf("nome do idoso: %s\n", elderly->name);
 }
 
+char * Return_name(Elderly * elder){
+    return elder->name ;
+}
 
 void KillElderly(Elderly * elderly){
 

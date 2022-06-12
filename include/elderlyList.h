@@ -16,6 +16,8 @@ void DestructElderlyList(ElderlyList * list);
 
 ElderlyList * Friends_Elders(ElderlyList * list);
 
+//teste ...........
+void Imprimi (ElderlyList * list);
 
 
 #endif
