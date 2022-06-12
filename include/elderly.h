@@ -10,4 +10,6 @@ void PrintElderly(Elderly * elderly);
 
 void KillElderly(Elderly *elderly);
 
+char * ElderlyName(Elderly * elderly);
+
 #endif

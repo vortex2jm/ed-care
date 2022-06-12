@@ -19,11 +19,14 @@ int main(int argc, char ** argv){
     InsertElderliesFromFileIntoList(elderlyList, argv);
     InsertCaregiversFromFileIntoList(caregiverList, argv);
 
+    AssigningCaregiversToElderlyList(caregiverList, elderlyList);
 
+    printf("=============== Idosos e suas listas de cuidadores ==============\n\n");
     PrintElderlyList(elderlyList);
-    PrintCaregiversList(caregiverList);
 
-    // Friends_Elders(elderlyList);
+    printf("=============== Lista com todos os cuidadores =================\n\n");
+    PrintCaregiversList(caregiverList);
     
+    // Friends_Elders(elderlyList);
     return 0;
 }

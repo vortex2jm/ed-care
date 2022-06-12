@@ -1,4 +1,4 @@
-NAME = edcare.exe
+NAME = edcare.out
 COMPILER = gcc
 FLAGS = -lm -pedantic -Wall
 
@@ -40,7 +40,7 @@ create_binary:
 clean:
 	@echo $(RED)
 	@echo Cleaning tree...
-	@rm -rf $(OBJ_DIR) $(EXEC_DIR) ./tests/out
+	@rm -rf $(OBJ_DIR) $(EXEC_DIR) ./tests/out && clear
 	@echo $(RESET_COLOR)
 
 run:

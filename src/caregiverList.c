@@ -4,6 +4,7 @@
 #include "../include/caregiverList.h"
 #include "../include/fileManager.h"
 #include "../include/validation.h"
+#include "../include/caregiver.h"
 
 typedef struct cell Cell;
 
@@ -35,7 +36,6 @@ CareList * CreateCareList(){
 
 
 
-// Private Function======================================================//
 void InsertOneCareGiver(CareList * list, Caregiver * caregiver){
 
     Cell * newCell = malloc(sizeof(Cell));
@@ -103,4 +103,16 @@ void PrintCaregiversList(CareList * list){
         PrintCareGiver(current->caregiver);
         current = aux;
     }
+}
+
+Caregiver * ReturnCaregiverByName(CareList * carelist, char * name){
+
+    Cell * aux = carelist->first;
+
+    while(aux && strcmp(name, CaregiverName(aux->caregiver))){
+
+        aux = aux->next;
+    }
+
+    return aux->caregiver;
 }

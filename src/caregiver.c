@@ -50,9 +50,16 @@ void PrintCareGiver(Caregiver * caregiver){
     if(!caregiver) return;
 
     printf("nome: %s\n", caregiver->name);
-    for(int x=0; x<caregiver->size;x++){
 
-        printf("coordenadas: %ld , %ld\n", caregiver->coordinates[x][0], caregiver->coordinates[x][1]);
-    }
-    printf("\n");
+    //TRECHO PARA IMPRIMIR AS COORDENADAS LIDAS
+    // for(int x=0; x<caregiver->size;x++){
+
+    //     printf("coordenadas: %ld , %ld\n", caregiver->coordinates[x][0], caregiver->coordinates[x][1]);
+    // }
+    // printf("\n");
+}
+
+char * CaregiverName(Caregiver * caregiver){
+
+    return caregiver->name;
 }

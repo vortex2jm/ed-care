@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/elderly.h"
-#include "../include/sensorsData.h"
-
 
 struct elderly {
 
@@ -34,7 +32,7 @@ void PrintElderly(Elderly * elderly){
     else printf("nome do idoso: %s\n", elderly->name);
 }
 
+char * ElderlyName(Elderly * elderly){
 
-void KillElderly(Elderly * elderly){
-
+    return elderly->name;
 }

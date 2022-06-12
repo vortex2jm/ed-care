@@ -1,6 +1,6 @@
 #ifndef elderly_list_h
 #define elderly_list_h
-#include "elderly.h"
+#include "caregiverList.h"
 
 typedef struct elderly_list ElderlyList;
 
@@ -26,7 +26,7 @@ ElderlyList * InsertElderliesFromFileIntoList(ElderlyList * list, char ** argv);
 void PrintElderlyList(ElderlyList * list);
 
 
-
+ElderlyList * AssigningCaregiversToElderlyList(CareList * caregiversList, ElderlyList * elderliesList);
 
 
 void RemoveElderlyFromList(ElderlyList * list, char * nome);

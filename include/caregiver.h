@@ -10,6 +10,8 @@ long int ** CareGiverDataReading(FILE * file, int size);
 
 void PrintCareGiver(Caregiver * caregiver);
 
+char * CaregiverName(Caregiver * caregiver);
+
 void EliminateCaregiver(Caregiver * caregiver);
 
 #endif
