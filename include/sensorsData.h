@@ -7,6 +7,14 @@ SensorsData ** CreateSensorsDataArray(int size, FILE * file);
 
 void PrintData(SensorsData * data);
 
+float ReturnTemperature(SensorsData * data);
+
+long int * ReturnCoordinates(SensorsData * data);
+
+int ReturnFall(SensorsData * data);
+
+int AnalysisSensorsData(SensorsData * data);
+
 void DeleteSensorsData(SensorsData * data);
 
 #endif

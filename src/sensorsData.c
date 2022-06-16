@@ -70,3 +70,32 @@ void PrintData(SensorsData * data){
     printf("temperatura: %.2f\n\n", data->temperature);
     */
 }
+
+// ======================================================================================== //
+float ReturnTemperature(SensorsData * data){
+
+    return data->temperature;
+}
+
+// ======================================================================================== //
+long int * ReturnCoordinates(SensorsData * data){
+
+    return data->coordinates;
+}
+
+// ======================================================================================== //
+int ReturnFall(SensorsData * data){
+
+    return data->fall;
+}
+
+int AnalysisSensorsData(SensorsData * data){
+
+    if(data->fall) return 1;
+
+    if(data->temperature >= 38) return 2;
+
+    if(data->temperature >= 37) return 3;
+
+    return 0;
+}

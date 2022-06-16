@@ -25,8 +25,15 @@ ElderlyList * InsertElderliesFromFileIntoList(ElderlyList * list, char ** argv);
 */
 void PrintElderlyList(ElderlyList * list);
 
+/*
 
+*/
 ElderlyList * AssigningCaregiversToElderlyList(CareList * caregiversList, ElderlyList * elderliesList);
+
+
+void ProcessListData(ElderlyList * list);
+
+
 
 
 void RemoveElderlyFromList(ElderlyList * list, char * nome);

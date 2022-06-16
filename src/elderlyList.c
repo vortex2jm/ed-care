@@ -176,3 +176,19 @@ ElderlyList * AssigningCaregiversToElderlyList(CareList * caregiversList, Elderl
 
     return elderliesList;
 }
+
+// ========================================================================================== //
+void ProcessListData(ElderlyList * list){
+
+    Cell * current = list->first;
+
+    while(current){
+
+        
+
+
+
+
+        current = current->next;
+    }
+}

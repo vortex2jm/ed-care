@@ -12,4 +12,6 @@ void KillElderly(Elderly *elderly);
 
 char * ElderlyName(Elderly * elderly);
 
+void ProcessElderlyData(Elderly * elderly);
+
 #endif
