@@ -3,7 +3,7 @@
 #include <string.h>
 #include "../include/elderly.h"
 #include "../include/elderlyList.h"
-#include "../include/friendsElders.h"
+#include "../include/friendsList.h"
 
 typedef struct friends_cell Friends_Cell;
 
@@ -22,6 +22,8 @@ struct friends_list {
 
 };
 
+
+// Public functions ================================================================//
 Friends_List * CreateFriendsElderlyList(){
     Friends_List * list = malloc(sizeof(Friends_List));
     list->first = NULL;

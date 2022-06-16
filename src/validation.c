@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "../include/validation.h"
 
+// Public functions =======================================================//
 int ValidateArg(int argc){
 
     if(argc <= 1){
@@ -14,6 +15,7 @@ int ValidateArg(int argc){
     return 1;
 }
 
+// ========================================================================//
 int NumberOfReadings(char ** argv){
 
     int num;

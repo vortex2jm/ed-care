@@ -7,7 +7,7 @@
 #include "../include/elderly.h"
 #include "../include/fileManager.h"
 #include "../include/sensorsData.h"
-#include "../include/friendsElders.h"
+#include "../include/friendsList.h"
 #include "../include/caregiverList.h"
 
 // defining cell type
@@ -30,8 +30,7 @@ struct cell {
     CareList * caregivers;
 };
 
-
-//====================================Private funcion=========================================//
+// Private funcion===============================================================================//
 /*
 #Function to insert only one elderly in to the list#
 
@@ -64,11 +63,7 @@ void InsertOneElderly(ElderlyList * list, Elderly * elderly, Friends_List * frie
     }
 }
 
-
-
-
-
-// .h functions =========================================================//
+// Public functions =========================================================//
 
 
 ElderlyList * CreateElderlyList(){
@@ -80,11 +75,7 @@ ElderlyList * CreateElderlyList(){
     return list;
 }
 
-
-
-
-
-
+// ========================================================================================== //
 ElderlyList * InsertElderliesFromFileIntoList(ElderlyList * list, char ** argv){
 
     // variables declaration
@@ -113,15 +104,10 @@ ElderlyList * InsertElderliesFromFileIntoList(ElderlyList * list, char ** argv){
         // ending strtok
         name = strtok(NULL, ";");   
     }
-
-
     return list;
 }
 
-
-
-
-
+// ========================================================================================== //
 void PrintElderlyList(ElderlyList * list){
 
     Cell * current = list->first;
@@ -144,34 +130,7 @@ void PrintElderlyList(ElderlyList * list){
 }
 
 
-
-
-
-ElderlyList * Friends_Elders(ElderlyList * list){
-    FILE * supportFile;
-    char string[100],firstLine[30],*aux;
-
-    supportFile = fopen("./tests/Teste1/Entradas/apoio.txt", "r");
-    fscanf(supportFile, "%[^\n]\n", firstLine);
-
-    //int i = 0;
-    while(fscanf(supportFile,"%[^\n]\n",string) != EOF){
-        aux = strtok(string,";");
-        while(aux != NULL){
-            
-            printf("%s",aux);
-            aux = strtok(NULL,";");
-        };
-        printf("\n");
-    };
-    
-    return list;
-}
-
-
-
-
-
+// ========================================================================================== //
 ElderlyList * AssigningCaregiversToElderlyList(CareList * caregiversList, ElderlyList * elderliesList){
 
     //variable declaration
@@ -196,18 +155,18 @@ ElderlyList * AssigningCaregiversToElderlyList(CareList * caregiversList, Elderl
         while(name != NULL){
 
             
-            if(!flag){  // if !flag, it's in first name
+            if(!flag){  // if !flag, it's in first name. First name's elderly name
 
-                while(aux && strcmp(name, ElderlyName(aux->elderly))){
+                while(aux && strcmp(name, ElderlyName(aux->elderly))){      // finding elderly on elderliy list
                     aux = aux->next;    // finding right elderly at cells
                 }
                 flag = 1;
             }  
 
-            else{
+            else{   // next names are caregivers names, then, program will insert them in to elderly caregivers list
                 
                 // inserting caregiver from main caregivers list on elderly caregivers list
-                //This insertion is done by name 
+                // This insertion is done by name 
                 InsertOneCareGiver(aux->caregivers, ReturnCaregiverByName(caregiversList, name));
 
             }

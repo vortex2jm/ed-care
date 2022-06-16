@@ -40,7 +40,7 @@ create_binary:
 clean:
 	@echo $(RED)
 	@echo Cleaning tree...
-	@rm -rf $(OBJ_DIR) $(EXEC_DIR) ./tests/out && clear
+	@rm -rf $(OBJ_DIR) $(EXEC_DIR) ./tests/out 
 	@echo $(RESET_COLOR)
 
 run:
@@ -55,4 +55,4 @@ valgrind:
 	@echo $(RESET_COLOR)
 	@valgrind $(EXEC_DIR)/$(NAME)
 
-rerun: all run
+again: all run

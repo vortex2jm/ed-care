@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+// Public functions ===============================================//
 char * FileFirstLine(char * way){
 
     FILE * file;

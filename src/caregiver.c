@@ -10,6 +10,8 @@ struct caregiver{
     int size;
 };
 
+
+// Public Functions ======================================================================//
 Caregiver * RegisterCaregiver(char * name, long int ** coordinates, int size){
 
     Caregiver * newCaregiver = (Caregiver*)malloc(sizeof(Caregiver));
@@ -21,6 +23,7 @@ Caregiver * RegisterCaregiver(char * name, long int ** coordinates, int size){
     return newCaregiver;
 }
 
+// ========================================================================================= //
 long int ** CareGiverDataReading(FILE * file, int size){
 
     long int ** data = malloc(sizeof(long int *) * size);
@@ -35,7 +38,7 @@ long int ** CareGiverDataReading(FILE * file, int size){
     return data;
 }
 
-
+// ==================================================================================================== //
 void EliminateCaregiver(Caregiver * caregiver){
 
     if(caregiver != NULL){
@@ -45,6 +48,7 @@ void EliminateCaregiver(Caregiver * caregiver){
     }
 }
 
+// ==================================================================================================== //
 void PrintCareGiver(Caregiver * caregiver){
 
     if(!caregiver) return;
@@ -59,6 +63,7 @@ void PrintCareGiver(Caregiver * caregiver){
     // printf("\n");
 }
 
+// ==================================================================================================== //
 char * CaregiverName(Caregiver * caregiver){
 
     return caregiver->name;

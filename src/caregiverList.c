@@ -21,9 +21,7 @@ struct cell {
 };
 
 
-
-
-
+// Public Functions ====================================================================//
 CareList * CreateCareList(){
 
     CareList * list = malloc(sizeof(CareList));
@@ -34,8 +32,7 @@ CareList * CreateCareList(){
     return list;
 }
 
-
-
+// ==================================================================================================== //
 void InsertOneCareGiver(CareList * list, Caregiver * caregiver){
 
     Cell * newCell = malloc(sizeof(Cell));
@@ -56,11 +53,7 @@ void InsertOneCareGiver(CareList * list, Caregiver * caregiver){
     }
 }
 
-
-
-
-
-// Function to insert all caregivers at one time
+// ==================================================================================================== //
 CareList * InsertCaregiversFromFileIntoList(CareList * list, char ** argv){
 
     char * name, caregiverFileWay[50];
@@ -85,7 +78,7 @@ CareList * InsertCaregiversFromFileIntoList(CareList * list, char ** argv){
     return list;
 }
 
-
+// ==================================================================================================== //
 void PrintCaregiversList(CareList * list){
 
     Cell * current, * aux;
@@ -105,6 +98,7 @@ void PrintCaregiversList(CareList * list){
     }
 }
 
+// ==================================================================================================== //
 Caregiver * ReturnCaregiverByName(CareList * carelist, char * name){
 
     Cell * aux = carelist->first;

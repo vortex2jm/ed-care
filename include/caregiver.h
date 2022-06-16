@@ -7,7 +7,6 @@ Caregiver * RegisterCaregiver(char * name, long int ** coordinates, int size);
 
 long int ** CareGiverDataReading(FILE * file, int size);
 
-
 void PrintCareGiver(Caregiver * caregiver);
 
 char * CaregiverName(Caregiver * caregiver);

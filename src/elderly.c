@@ -11,7 +11,7 @@ struct elderly {
 
 };
 
-
+// Public functions======================================================================== //
 Elderly * RegisterElderly(char * name, SensorsData ** data, int dataAmount){
 
     Elderly * newElderly = (Elderly*) malloc(sizeof(Elderly));
@@ -23,6 +23,7 @@ Elderly * RegisterElderly(char * name, SensorsData ** data, int dataAmount){
     return newElderly;
 }
 
+// ======================================================================================== //
 void PrintElderly(Elderly * elderly){
 
     if(elderly == NULL) printf("Elderly do not exists!\n\n");
@@ -32,6 +33,7 @@ void PrintElderly(Elderly * elderly){
     else printf("nome do idoso: %s\n", elderly->name);
 }
 
+// ======================================================================================== //
 char * ElderlyName(Elderly * elderly){
 
     return elderly->name;

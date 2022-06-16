@@ -9,7 +9,7 @@ struct sensors{
     int fall;
 
 };
-// Private function
+// Private function ================================================================================== //
 SensorsData * RegisterSensorsData(float temperature, long int latitude, long int longitude, int fall){
 
     SensorsData * newSensorsData = malloc(sizeof(SensorsData));
@@ -22,7 +22,7 @@ SensorsData * RegisterSensorsData(float temperature, long int latitude, long int
     return newSensorsData; 
 }
 
-// .h functions
+// Public functions =====================================================================================//
 void DeleteSensorsData(SensorsData * data){
 
     if(data) free(data);
@@ -56,6 +56,8 @@ SensorsData ** CreateSensorsDataArray(int size, FILE * file){
     return data;
 }
 
+
+// ============================================================================================================= //
 void PrintData(SensorsData * data){
 
     if(!data) return;
