@@ -22,6 +22,13 @@ int main(int argc, char ** argv){
     Friends_Elders(elderlyList);
     
     Imprimi (elderlyList);
+
+    printf("\n---------- Apagando amigos ---------\n");
+    Destroy_list_of_dead_elderly(elderlyList,"Milla");
+
+    Imprimi (elderlyList);
+
+    
     
     return 0;
 }

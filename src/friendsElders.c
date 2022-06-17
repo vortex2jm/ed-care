@@ -53,13 +53,65 @@ Friends_List * InsertFriendsElderliesIntoList(Elderly * list,Friends_List * frie
     return friends;
 }
 
+void Destruct_List_friend(Friends_List * friends, char *name){
+    
+    int i =0;
+
+    if (friends->first != NULL) {
+        Friends_Cell *next  = friends->first;
+        Friends_Cell *before = NULL;
+
+        while (next != NULL){
+            if (strcmp(Return_name(next->elderly),name) == 0){ 
+                i = 1;
+                break; 
+            }
+            before = next;
+            next = next->next;
+        }
+        if (i == 1){
+            if (friends->first == next){
+                friends->first = next->next;
+            }
+            else if (friends->last == next){
+                friends->last = before;
+                before->next = NULL;
+            }
+            else {
+                before->next = next->next;
+            }
+
+            free(next);  
+        }   
+       
+    }
+
+}
+
+void Destroy_Elder(Friends_List * friends){
+    Friends_Cell *assistant1 = friends->first;
+    Friends_Cell *assistant2;
+    
+    while(assistant1 != NULL){
+        assistant2 = assistant1->next;
+        free(assistant1);
+        assistant1 = assistant2;
+    }
+    
+    free(friends);
+ 
+
+}
+
 
 void PrintTest(Friends_List * friends,char * name){
     Friends_Cell *friend = friends->first;
     
     printf("\n%s :",name);
+    
     while(friend != NULL){
         printf("%s ",Return_name(friend->elderly));
         friend = friend->next;
-    };
+    };    
+        
 }

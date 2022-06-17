@@ -145,22 +145,45 @@ ElderlyList * Friends_Elders(ElderlyList * list){
         friends2 = list->first;
     };
     
-    
-    
+
     return list;
 }
 
 Cell * Return_position_Elder(Cell *friend,char string[50],Elderly * elder){
     while(friend != NULL && strcmp(string,Return_name(friend->elderly)) != 0){
-            friend = friend->next; 
+        friend = friend->next; 
     };
     return friend;
 }
 
+//Apagando o idoso morto ..... pelo nome
+
+void Destroy_list_of_dead_elderly(ElderlyList * list,char *name){
+    Cell * elder = list->first;
+    
+    while (elder != NULL){
+        if (strcmp(name,Return_name(elder->elderly)) == 0){
+            printf("Idoso morto > %s\n",Return_name(elder->elderly));
+            Destroy_Elder(elder->friends);
+        }
+        else {
+            Destruct_List_friend(elder->friends, name);
+            printf("--%s\n",Return_name(elder->elderly));
+        }
+
+    
+        elder = elder->next;
+    }
+
+    
+}
+
+
+
  
 void Imprimi (ElderlyList * list){
     Cell * assistant = list->first;
-
+    
     while(assistant != NULL){
         PrintTest(assistant->friends,Return_name(assistant->elderly));
         assistant = assistant->next;
