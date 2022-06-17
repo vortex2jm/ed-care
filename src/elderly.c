@@ -55,7 +55,11 @@ void ProcessElderlyData(Elderly * elderly, Friends_List * friendsList, CareList 
 
     for(int x=0; x<elderly->dataAmount; x++){
 
-        if(!elderly->data[x]) break;
+        if(!elderly->data[x]){
+
+            fprintf(file, "falecimento\n");
+            break;
+        } 
 
         if(!AnalysisSensorsData(elderly->data[x])){ //sem febre e sem queda
 
