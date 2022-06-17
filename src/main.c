@@ -26,6 +26,8 @@ int main(int argc, char ** argv){
     printf("=============== Lista com todos os cuidadores =================\n\n");
     PrintCaregiversList(caregiverList);
     
+    ProcessListData(elderlyList);
+
     // Friends_Elders(elderlyList);
     return 0;
 }

@@ -14,4 +14,6 @@ Caregiver * ReturnCaregiverByName(CareList * carelist, char * name);
 
 void PrintCaregiversList(CareList * list);
 
+Caregiver * LessCaregiverDistance(long int * coordinates, CareList * carelist, int index);
+
 #endif

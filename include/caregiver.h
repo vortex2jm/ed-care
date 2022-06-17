@@ -13,4 +13,6 @@ char * CaregiverName(Caregiver * caregiver);
 
 void EliminateCaregiver(Caregiver * caregiver);
 
+long int * ReturnCaregiverLocation(Caregiver * caregiver, int index);
+
 #endif

@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/elderly.h"
+#include "../include/friendsList.h"
+#include "../include/caregiverList.h"
 
 struct elderly {
 
@@ -40,7 +42,7 @@ char * ElderlyName(Elderly * elderly){
 }
 
 // ======================================================================================== //
-void ProcessElderlyData(Elderly * elderly){
+void ProcessElderlyData(Elderly * elderly, Friends_List * friendsList, CareList * careList){
 
     FILE * file;
     char fileWay[50];
@@ -53,32 +55,40 @@ void ProcessElderlyData(Elderly * elderly){
 
     for(int x=0; x<elderly->dataAmount; x++){
 
-        if(!AnalysisSensorsData(elderly->data[x])){
+        if(!elderly->data[x]) break;
+
+        if(!AnalysisSensorsData(elderly->data[x])){ //sem febre e sem queda
 
             fprintf(file, "tudo ok\n");
         }
 
-        else if(AnalysisSensorsData(elderly->data[x]) == 1){
+        else if(AnalysisSensorsData(elderly->data[x]) == 1){    //queda
 
-            // idoso caiu, criar função para ver qual cuidador está mais perto
+            fprintf(file, "queda, acionou %s\n", CaregiverName(LessCaregiverDistance(
+                                                      ReturnCoordinates(elderly->data[x]), careList, x)));
         }
 
-        else if(AnalysisSensorsData(elderly->data[x]) == 2){
+        else if(AnalysisSensorsData(elderly->data[x]) == 2){    //febre alta
 
-            // febre alta, criar função para ver qual cuidador está mais perto
+            fprintf(file, "febre alta, acionou %s\n", CaregiverName(LessCaregiverDistance(
+                                                      ReturnCoordinates(elderly->data[x]), careList, x)));
+
             lowFeverCounter = 0;
         }        
 
-        else if(AnalysisSensorsData(elderly->data[x]) == 3){
+        else if(AnalysisSensorsData(elderly->data[x]) == 3){    //febre baixa
 
             if(lowFeverCounter == 3){
 
-                //febre baixa pela quarta vez, acionar cuidador
+                fprintf(file, "febre baixa pela quarta vez, acionou %s\n", CaregiverName(LessCaregiverDistance(
+                                                      ReturnCoordinates(elderly->data[x]), careList, x)));
+
                 lowFeverCounter = 0;
             }
 
             else{
-
+                
+                fprintf(file, "febre baixa, acionou fulano de tal\n");
                 // febre baixa, criar função para ver qual amigo está mais perto
                 lowFeverCounter++;
             }
@@ -89,5 +99,3 @@ void ProcessElderlyData(Elderly * elderly){
 
     fclose(file);
 }
-
-// possivelmente teremos que adicionar o campo "disponibilidade" nas estruturas dos idosos e cuidadores

@@ -110,3 +110,36 @@ Caregiver * ReturnCaregiverByName(CareList * carelist, char * name){
 
     return aux->caregiver;
 }
+
+
+Caregiver * LessCaregiverDistance(long int * coordinates, CareList * carelist, int index){
+
+    if(!carelist) return NULL;
+
+    Caregiver * lessDistanceCaregiver;
+    Cell * current;
+
+    current = carelist->first->next;
+    lessDistanceCaregiver = carelist->first->caregiver;
+
+
+    while(current){
+
+        printf("%lf / %lf\n", Distance(coordinates, ReturnCaregiverLocation(current->caregiver, index)),
+        Distance(coordinates, ReturnCaregiverLocation(lessDistanceCaregiver, index)));
+
+        if(Distance(coordinates, ReturnCaregiverLocation(current->caregiver, index)) 
+        < Distance(coordinates, ReturnCaregiverLocation(lessDistanceCaregiver, index))
+        ){
+
+            lessDistanceCaregiver = current->caregiver;
+        }
+
+        current = current->next;
+    }
+
+    return lessDistanceCaregiver;
+}
+
+
+

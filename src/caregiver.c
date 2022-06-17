@@ -68,3 +68,9 @@ char * CaregiverName(Caregiver * caregiver){
 
     return caregiver->name;
 }
+
+
+long int * ReturnCaregiverLocation(Caregiver * caregiver, int index){
+
+    return caregiver->coordinates[index];
+}

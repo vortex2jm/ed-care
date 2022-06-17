@@ -184,10 +184,7 @@ void ProcessListData(ElderlyList * list){
 
     while(current){
 
-        
-
-
-
+        ProcessElderlyData(current->elderly, current->friends, current->caregivers);
 
         current = current->next;
     }

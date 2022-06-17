@@ -20,7 +20,7 @@ all: clean create_directories $(O_FILES) create_binary
 %.o: ./src/%.c ./include/%.h
 	@echo $(YELLOW)
 	@echo Compilling $(C_FILES) files...
-	@$(COMPILER) -c ./src/$(C_FILES) $(FLAGS)
+	@$(COMPILER) -c ./src/$(C_FILES) 
 	@mv $(O_FILES) $(OBJ_DIR)
 	@echo $(RESET_COLOR)
 
@@ -34,7 +34,7 @@ create_directories:
 create_binary:
 	@echo $(YELLOW)
 	@echo Creating binary file...
-	@$(COMPILER) -o $(EXEC_DIR)/$(NAME) $(OBJ_DIR)/$(O_FILES)
+	@$(COMPILER) -o $(EXEC_DIR)/$(NAME) $(OBJ_DIR)/$(O_FILES) $(FLAGS)
 	@echo $(RESET_COLOR)
 
 clean:

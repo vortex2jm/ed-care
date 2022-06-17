@@ -1,6 +1,8 @@
 #ifndef elderly_h
 #define elderly_h
 #include "sensorsData.h"
+#include "friendsList.h"
+#include "caregiverList.h"
 
 typedef struct elderly Elderly;
 
@@ -12,6 +14,6 @@ void KillElderly(Elderly *elderly);
 
 char * ElderlyName(Elderly * elderly);
 
-void ProcessElderlyData(Elderly * elderly);
+void ProcessElderlyData(Elderly * elderly, Friends_List * friendsList, CareList * careList);
 
 #endif
