@@ -40,7 +40,7 @@ create_binary:
 clean:
 	@echo $(RED)
 	@echo Cleaning tree...
-	@rm -rf $(OBJ_DIR) $(EXEC_DIR) *.txt
+	@rm -rf $(OBJ_DIR) $(EXEC_DIR) *.txt *.o
 	@echo $(RESET_COLOR)
 
 run:

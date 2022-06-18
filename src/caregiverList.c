@@ -125,8 +125,8 @@ Caregiver * LessCaregiverDistance(long int * coordinates, CareList * carelist, i
 
     while(current){
 
-        printf("%lf / %lf\n", Distance(coordinates, ReturnCaregiverLocation(current->caregiver, index)),
-        Distance(coordinates, ReturnCaregiverLocation(lessDistanceCaregiver, index)));
+        // printf("%lf / %lf\n", Distance(coordinates, ReturnCaregiverLocation(current->caregiver, index)),
+        // Distance(coordinates, ReturnCaregiverLocation(lessDistanceCaregiver, index)));
 
         if(Distance(coordinates, ReturnCaregiverLocation(current->caregiver, index)) 
         < Distance(coordinates, ReturnCaregiverLocation(lessDistanceCaregiver, index))

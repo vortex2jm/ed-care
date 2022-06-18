@@ -181,13 +181,130 @@ ElderlyList * AssigningCaregiversToElderlyList(CareList * caregiversList, Elderl
 void ProcessListData(ElderlyList * list){
 
     Cell * current = list->first;
+    FILE * file;
+    char fileWay[50];
+    int lowFeverCounter=0;
 
     while(current){
 
-        ProcessElderlyData(current->elderly, current->friends, current->caregivers);
+        sprintf(fileWay, "./%s-saida.txt", ElderlyName(current->elderly));
+        file = fopen(fileWay, "w");
 
+        for(int x =0; x< ReturnDataAmount(current->elderly); x++){
+
+            if(!ReturnSensorDataByIndex(current->elderly,x)) {  //faleceu
+                
+                fprintf(file, "falecimento\n");    
+                break;
+            }
+            else if(!AnalysisSensorsData(ReturnSensorDataByIndex(current->elderly, x))) fprintf(file, "tudo ok\n");//tudo normal
+
+            else if(AnalysisSensorsData(ReturnSensorDataByIndex(current->elderly, x)) == 1){    //queda
+
+                fprintf(file, "queda, acionou %s\n", CaregiverName(LessCaregiverDistance(
+                                                  ReturnCoordinates(ReturnSensorDataByIndex(
+                                                    current->elderly, x)), current->caregivers, x)));
+            }
+
+            else if(AnalysisSensorsData(ReturnSensorDataByIndex(current->elderly, x)) == 2){    //febre alta
+
+                fprintf(file, "febre alta, acionou %s\n", CaregiverName(LessCaregiverDistance(
+                                                  ReturnCoordinates(ReturnSensorDataByIndex(
+                                                      current->elderly,x)), current->caregivers, x)));
+                lowFeverCounter = 0;
+            }
+
+            else if(AnalysisSensorsData(ReturnSensorDataByIndex(current->elderly, x)) == 3){    //febre baixa
+                
+                if(lowFeverCounter == 3){
+                    fprintf(file, "febre baixa pela quarta vez, acionou %s\n", CaregiverName(LessCaregiverDistance(
+                                                          ReturnCoordinates(ReturnSensorDataByIndex(
+                                                            current->elderly, x)), current->caregivers, x)));
+                    lowFeverCounter = 0;
+                }
+                
+                else{
+
+                    fprintf(file, "febre baixa, acionou fulano de tal\n");
+                    // febre baixa, criar função para ver qual amigo está mais perto
+                    lowFeverCounter++;
+                }
+            }
+        }
+
+        fclose(file);
         current = current->next;
     }
 }
 
-// testar branch
+// ========================================================================================== //
+Cell * ReturnElderlyCell(Cell *friend,char string[50],Elderly * elder){
+    while(friend != NULL && strcmp(string,ElderlyName(friend->elderly)) != 0){
+        friend = friend->next; 
+    };
+    return friend;
+}
+
+// ========================================================================================== //
+ElderlyList * AssigningElderliesFriends(ElderlyList * list){
+    FILE * supportFile;
+    char lineFile[100],firstLine[100],*assistant,string1[50],string2[50];
+    Cell * friends1 = list->first,* friends2 = list->first;
+    int i = 0;
+    
+    
+    supportFile = fopen("./tests/Teste1/Entradas/apoio.txt", "r");
+    fscanf(supportFile, "%[^\n]\n", firstLine);
+    
+    while(fscanf(supportFile,"%[^\n]\n",lineFile) != EOF){
+        assistant = strtok(lineFile,";");
+        while(assistant != NULL){
+            if (i == 0){strcpy(string1,assistant); i = 1;}
+            else {strcpy(string2,assistant); i = 0;}
+            assistant = strtok(NULL,";");
+        };
+        
+        friends1 = ReturnElderlyCell(friends1, string1,friends1->elderly);
+        friends2 = ReturnElderlyCell(friends2, string2,friends2->elderly);
+        
+        friends2->friends = InsertOneFriendIntoList(friends1->elderly,friends2->friends);
+        friends1->friends = InsertOneFriendIntoList(friends2->elderly,friends1->friends);
+        
+        friends1 = list->first; 
+        friends2 = list->first;
+    };
+    
+    return list;
+}
+
+// ========================================================================================== //
+void RemoveDeadElderlyFromFriendsLists(ElderlyList * list,char *name){
+    Cell * elder = list->first;
+    
+    while (elder != NULL){
+        if (strcmp(name,ElderlyName(elder->elderly)) == 0){
+            printf("Idoso morto > %s\n",ElderlyName(elder->elderly));
+            DestructElderlyFriendsList(elder->friends);
+        }
+        else {
+            DestructOneFriendFromList(elder->friends, name);
+            printf("--%s\n",ElderlyName(elder->elderly));
+        }
+
+        elder = elder->next;
+    }   
+}
+
+void PrintAllFriendsLists(ElderlyList * list){
+
+    Cell * current = list->first;;
+
+    printf("\n================Idosos e suas listas de amigos==============\n");
+    while(current){
+
+        PrintTest(current->friends, ElderlyName(current->elderly));
+
+        current = current->next;
+    }
+
+}

@@ -15,19 +15,23 @@ int main(int argc, char ** argv){
     ElderlyList * elderlyList = CreateElderlyList();
     CareList * caregiverList = CreateCareList();
 
-    InsertElderliesFromFileIntoList(elderlyList, argv);
-    InsertCaregiversFromFileIntoList(caregiverList, argv);
+    InsertElderliesFromFileIntoList(elderlyList, argv); //inserindo idosos do arquivo na lista
+    InsertCaregiversFromFileIntoList(caregiverList, argv);  //Inserindo cuidadores do arquivo na lista
 
-    AssigningCaregiversToElderlyList(caregiverList, elderlyList);
+    AssigningCaregiversToElderlyList(caregiverList, elderlyList);   //Atribuindo cuidadores aos idosos da lista    
+    AssigningElderliesFriends(elderlyList); //Atribuindo os amigos dos idosos da lista
+
 
     printf("=============== Idosos e suas listas de cuidadores ==============\n\n");
     PrintElderlyList(elderlyList);
 
+
     printf("=============== Lista com todos os cuidadores =================\n\n");
     PrintCaregiversList(caregiverList);
-    
-    ProcessListData(elderlyList);
 
-    // Friends_Elders(elderlyList);
+
+    ProcessListData(elderlyList);   //processando os dados de todos os idosos da lista
+    PrintAllFriendsLists(elderlyList);
+
     return 0;
 }
