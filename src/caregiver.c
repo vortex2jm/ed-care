@@ -33,8 +33,10 @@ long int ** CareGiverDataReading(FILE * file, int size){
 
     for(int x=0; x<size;x++){
 
-        fscanf(file,"%ld;%ld\n", &data[x][0], &data[x][1]);
+        fscanf(file,"%ld;%ld\n", &data[x][0], &data[x][1]);    
     }
+
+
     return data;
 }
 

@@ -1,4 +1,4 @@
-Cuidador1;Cuidador2;Cuidador3;Cuidador4 
+Cuidador1;Cuidador2;Cuidador3;Cuidador4
 Joao;Cuidador1;Cuidador4
 Maria;Cuidador2;Cuidador3;Cuidador1
 Alice;Cuidador1;Cuidador2

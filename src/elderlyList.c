@@ -79,16 +79,16 @@ ElderlyList * CreateElderlyList(){
 ElderlyList * InsertElderliesFromFileIntoList(ElderlyList * list, char ** argv){
 
     // variables declaration
-    char * name, elderlyFileWay[50];
+    char * name, elderlyFileWay[100];
     FILE * elderlyFile;
 
 
     // separating names from first line
-    name = strtok(FileFirstLine("./tests/Teste1/Entradas/apoio.txt"),";"); 
+    name = strtok(FileFirstLine("./tests/Teste3/Entrada/apoio.txt"),";"); 
 
     while(name != NULL){
         
-        sprintf(elderlyFileWay, "./tests/Teste1/Entradas/%s.txt", name);
+        sprintf(elderlyFileWay, "./tests/Teste3/Entrada/%s.txt", name);
         elderlyFile = fopen(elderlyFileWay, "r");
         
         
@@ -135,12 +135,12 @@ ElderlyList * AssigningCaregiversToElderlyList(CareList * caregiversList, Elderl
 
     //variable declaration
     int flag=0;
-    char line[100], * name;
+    char line[1000], * name;
     FILE * caregiversFile;
     Cell * aux;
     
 
-    caregiversFile = fopen("./tests/Teste1/Entradas/cuidadores.txt", "r");
+    caregiversFile = fopen("./tests/Teste3/Entrada/cuidadores.txt", "r");
     fscanf(caregiversFile, "%*[^\n]\n");    //  deleting first line
 
 
@@ -182,10 +182,12 @@ void ProcessListData(ElderlyList * list){
 
     Cell * current = list->first;
     FILE * file;
-    char fileWay[50];
+    char fileWay[100];
     int lowFeverCounter=0;
 
     while(current){
+
+        lowFeverCounter =0;        
 
         sprintf(fileWay, "./%s-saida.txt", ElderlyName(current->elderly));
         file = fopen(fileWay, "w");
@@ -197,7 +199,11 @@ void ProcessListData(ElderlyList * list){
                 fprintf(file, "falecimento\n");    
                 break;
             }
-            else if(!AnalysisSensorsData(ReturnSensorDataByIndex(current->elderly, x))) fprintf(file, "tudo ok\n");//tudo normal
+
+            else if(!AnalysisSensorsData(ReturnSensorDataByIndex(current->elderly, x))){
+
+                fprintf(file, "tudo ok\n");//tudo normal
+            } 
 
             else if(AnalysisSensorsData(ReturnSensorDataByIndex(current->elderly, x)) == 1){    //queda
 
@@ -231,15 +237,18 @@ void ProcessListData(ElderlyList * list){
                         fprintf(file, "Febre baixa mas, infelizmente, o idoso está sem amigos na rede\n");
                     }
 
-                    fprintf(file, "febre baixa, acionou amigo %s\n", ElderlyName(LessFriendDistance(current->friends,
-                                                                             ReturnCoordinates(ReturnSensorDataByIndex(
-                                                                                 current->elderly, x)), x)));
+                    else{
+
+                        fprintf(file, "febre baixa, acionou amigo %s\n", ElderlyName(LessFriendDistance(current->friends,
+                                                                                 ReturnCoordinates(ReturnSensorDataByIndex(
+                                                                                     current->elderly, x)), x)));
+
+                    }
                     // febre baixa, criar função para ver qual amigo está mais perto
                     lowFeverCounter++;
                 }
             }
         }
-
         fclose(file);
         current = current->next;
     }
@@ -256,12 +265,12 @@ Cell * ReturnElderlyCell(Cell *friend,char string[50],Elderly * elder){
 // ========================================================================================== //
 ElderlyList * AssigningElderliesFriends(ElderlyList * list){
     FILE * supportFile;
-    char lineFile[100],firstLine[100],*assistant,string1[50],string2[50];
+    char lineFile[100],firstLine[100],*assistant,string1[100],string2[100];
     Cell * friends1 = list->first,* friends2 = list->first;
     int i = 0;
     
     
-    supportFile = fopen("./tests/Teste1/Entradas/apoio.txt", "r");
+    supportFile = fopen("./tests/Teste3/Entrada/apoio.txt", "r");
     fscanf(supportFile, "%[^\n]\n", firstLine);
     
     while(fscanf(supportFile,"%[^\n]\n",lineFile) != EOF){

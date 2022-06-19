@@ -7,8 +7,8 @@
 char * FileFirstLine(char * way){
 
     FILE * file;
-    char directory[30];
-    static char firstLine[100];
+    char directory[100];
+    static char firstLine[1000];
 
     sprintf(directory, "%s", way);
     file = fopen(directory, "r");

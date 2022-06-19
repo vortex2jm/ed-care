@@ -56,20 +56,20 @@ void InsertOneCareGiver(CareList * list, Caregiver * caregiver){
 // ==================================================================================================== //
 CareList * InsertCaregiversFromFileIntoList(CareList * list, char ** argv){
 
-    char * name, caregiverFileWay[50];
+    char * name, caregiverFileWay[100];
     FILE * caregiverFile;
 
-    name = strtok(FileFirstLine("./tests/Teste1/Entradas/cuidadores.txt"), ";");
+    name = strtok(FileFirstLine("./tests/Teste3/Entrada/cuidadores.txt"), ";");
 
     while(name != NULL){
 
-        sprintf(caregiverFileWay,"./tests/Teste1/Entradas/%s.txt", name);
+        sprintf(caregiverFileWay,"./tests/Teste3/Entrada/%s.txt", name);
         caregiverFile = fopen(caregiverFileWay, "r");
 
         InsertOneCareGiver(list, RegisterCaregiver(name,
                                  CareGiverDataReading(caregiverFile, NumberOfReadings(argv)),
                                  NumberOfReadings(argv)));
-                           
+
         fclose(caregiverFile);
 
         name = strtok(NULL, ";");
@@ -140,6 +140,3 @@ Caregiver * LessCaregiverDistance(long int * coordinates, CareList * carelist, i
 
     return lessDistanceCaregiver;
 }
-
-
-
