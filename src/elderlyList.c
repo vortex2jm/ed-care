@@ -225,6 +225,12 @@ void ProcessListData(ElderlyList * list){
                 
                 else{
 
+                    if(!LessFriendDistance(current->friends, ReturnCoordinates(ReturnSensorDataByIndex(
+                                                                                current->elderly, x)), x)){
+
+                        fprintf(file, "Febre baixa mas, infelizmente, o idoso está sem amigos na rede\n");
+                    }
+
                     fprintf(file, "febre baixa, acionou amigo %s\n", ElderlyName(LessFriendDistance(current->friends,
                                                                              ReturnCoordinates(ReturnSensorDataByIndex(
                                                                                  current->elderly, x)), x)));

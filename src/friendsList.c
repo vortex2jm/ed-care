@@ -158,8 +158,3 @@ Elderly * LessFriendDistance(Friends_List * list, long int * coordinates, int in
     }
     return lessDistanceFriend;
 }
-
-
-
-
-
