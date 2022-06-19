@@ -225,7 +225,9 @@ void ProcessListData(ElderlyList * list){
                 
                 else{
 
-                    fprintf(file, "febre baixa, acionou fulano de tal\n");
+                    fprintf(file, "febre baixa, acionou amigo %s\n", ElderlyName(LessFriendDistance(current->friends,
+                                                                             ReturnCoordinates(ReturnSensorDataByIndex(
+                                                                                 current->elderly, x)), x)));
                     // febre baixa, criar função para ver qual amigo está mais perto
                     lowFeverCounter++;
                 }

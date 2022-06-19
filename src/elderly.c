@@ -49,3 +49,8 @@ int ReturnDataAmount(Elderly * elderly){
 
     return elderly->dataAmount;
 }
+
+SensorsData ** ReturnAllData(Elderly * elderly){
+
+    return elderly->data;
+}   

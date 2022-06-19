@@ -12,4 +12,6 @@ void DestructElderlyFriendsList(Friends_List * friends);
 
 void DestructOneFriendFromList(Friends_List * friends, char *name);
 
+Elderly * LessFriendDistance(Friends_List * list, long int * coordinates, int index);
+
 #endif 

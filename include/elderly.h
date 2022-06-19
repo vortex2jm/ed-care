@@ -16,4 +16,6 @@ int ReturnDataAmount(Elderly * elderly);
 
 SensorsData * ReturnSensorDataByIndex(Elderly * elderly, int index);
 
+SensorsData ** ReturnAllData(Elderly * elderly);
+
 #endif

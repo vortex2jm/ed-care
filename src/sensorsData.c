@@ -99,3 +99,27 @@ int AnalysisSensorsData(SensorsData * data){
 
     return 0;
 }
+
+int IsFourthLowFever(SensorsData ** data, int currentIndex){
+
+    int lowFeverCounter=0;
+
+    for(int x=0; x< currentIndex; x++){
+
+        if(data[x]->temperature >= 38){
+
+            lowFeverCounter =0;
+        }
+
+        else if(data[x]->temperature >= 37){
+
+            lowFeverCounter++;
+        }       
+    }
+
+    if(lowFeverCounter == 4) return 1;
+
+    return 0;
+}
+
+

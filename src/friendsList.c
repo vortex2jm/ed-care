@@ -4,6 +4,7 @@
 #include "../include/elderly.h"
 #include "../include/elderlyList.h"
 #include "../include/friendsList.h"
+#include "../include/fileManager.h"
 
 typedef struct friends_cell Friends_Cell;
 
@@ -114,3 +115,51 @@ void PrintTest(Friends_List * friends,char * name){
 
     printf("\n");           
 }
+
+
+Elderly * LessFriendDistance(Friends_List * list, long int * coordinates, int index){
+
+    if(!list) return NULL;
+
+    Elderly * lessDistanceFriend = NULL;
+    Friends_Cell  * current = list->first;
+
+    while(current){
+
+        if(!lessDistanceFriend){
+
+            if(!ReturnSensorDataByIndex(current->elderly, index)){}
+
+            else if(!ReturnFall(ReturnSensorDataByIndex(current->elderly, index)) &&
+            ReturnTemperature(ReturnSensorDataByIndex(current->elderly, index)) < 38 &&
+            !IsFourthLowFever(ReturnAllData(current->elderly), index)){
+
+                lessDistanceFriend = current->elderly;
+            }
+        }
+
+        else{
+
+            if(!ReturnSensorDataByIndex(current->elderly, index)){}
+
+            else if((!ReturnFall(ReturnSensorDataByIndex(current->elderly, index)) &&
+            ReturnTemperature(ReturnSensorDataByIndex(current->elderly, index)) < 38 &&
+            !IsFourthLowFever(ReturnAllData(current->elderly), index))){
+
+
+                if(Distance(coordinates, ReturnCoordinates(ReturnSensorDataByIndex(current->elderly, index)))
+                < Distance(coordinates, ReturnCoordinates(ReturnSensorDataByIndex(lessDistanceFriend, index))))
+                {
+                    lessDistanceFriend = current->elderly;
+                }        
+            }
+        }
+        current = current->next;
+    }
+    return lessDistanceFriend;
+}
+
+
+
+
+
