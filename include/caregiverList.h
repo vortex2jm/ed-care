@@ -16,4 +16,8 @@ void PrintCaregiversList(CareList * list);
 
 Caregiver * LessCaregiverDistance(long int * coordinates, CareList * carelist, int index);
 
+void DestructCaregiversList(CareList * list);
+
+void DestructElderliesCaregiversList(CareList * list);
+
 #endif

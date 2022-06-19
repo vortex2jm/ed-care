@@ -26,7 +26,7 @@ void PrintTest(Friends_List * friends,char * name);
 
 void PrintAllFriendsLists(ElderlyList * list);
 
-
+void DeleteElderlyList(ElderlyList * list);
 
 
 

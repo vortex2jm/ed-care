@@ -62,6 +62,7 @@ void DestructElderlyFriendsList(Friends_List * friends){
     Friends_Cell *assistant2;
     
     while(assistant1 != NULL){
+        
         assistant2 = assistant1->next;
         free(assistant1);
         assistant1 = assistant2;

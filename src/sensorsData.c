@@ -122,4 +122,15 @@ int IsFourthLowFever(SensorsData ** data, int currentIndex){
     return 0;
 }
 
+void DeleteSensorsDataArray(SensorsData ** array, int size){
 
+    if(array){
+
+        for(int x=0; x<size;x++){
+
+            if(array[x]) DeleteSensorsData(array[x]);
+        }
+
+        free(array);
+    }
+}

@@ -140,3 +140,41 @@ Caregiver * LessCaregiverDistance(long int * coordinates, CareList * carelist, i
 
     return lessDistanceCaregiver;
 }
+
+void DestructCaregiversList(CareList * list){
+
+    Cell * current = list->first;
+    Cell * next = NULL;
+
+    if(list){
+
+        while(current){
+
+            if(current->caregiver) EliminateCaregiver(current->caregiver);
+
+            next = current->next;
+            free(current);
+            current = next;
+        }
+
+        free(list);
+    }
+}
+
+void DestructElderliesCaregiversList(CareList * list){
+
+    Cell * current, * next;
+    current = list->first;
+
+    if(list){
+
+        while(current){
+
+            next = current->next;
+            free(current);
+            current = next;
+        }
+
+        free(list);
+    }
+}

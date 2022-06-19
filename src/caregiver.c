@@ -36,16 +36,26 @@ long int ** CareGiverDataReading(FILE * file, int size){
         fscanf(file,"%ld;%ld\n", &data[x][0], &data[x][1]);    
     }
 
-
     return data;
 }
 
 // ==================================================================================================== //
 void EliminateCaregiver(Caregiver * caregiver){
 
-    if(caregiver != NULL){
+    if(caregiver){
 
-        if(caregiver->name != NULL) free(caregiver->name);
+        if(caregiver->name) free(caregiver->name);
+
+        if(caregiver->coordinates){
+
+            for(int x=0; x<caregiver->size; x++){
+
+                if(caregiver->coordinates[x]) free(caregiver->coordinates[x]);
+            }
+
+            free(caregiver->coordinates);
+        }
+
         free(caregiver);
     }
 }

@@ -19,4 +19,6 @@ void DeleteSensorsData(SensorsData * data);
 
 int IsFourthLowFever(SensorsData ** data, int currentIndex);
 
+void DeleteSensorsDataArray(SensorsData ** array, int size);
+
 #endif

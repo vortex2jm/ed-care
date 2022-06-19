@@ -54,3 +54,15 @@ SensorsData ** ReturnAllData(Elderly * elderly){
 
     return elderly->data;
 }   
+
+void KillElderly(Elderly * elderly){
+
+    if(elderly){
+
+        if(elderly->name) free(elderly->name);
+
+        if(elderly->data) DeleteSensorsDataArray(elderly->data, elderly->dataAmount);
+
+        free(elderly);
+    }
+}

@@ -9,7 +9,6 @@
 
 int main(int argc, char ** argv){
 
-
     // Verifying if have args
     ValidateArg(argc);
 
@@ -19,7 +18,6 @@ int main(int argc, char ** argv){
 
     InsertElderliesFromFileIntoList(elderlyList, argv); //inserindo idosos do arquivo na lista
     InsertCaregiversFromFileIntoList(caregiverList, argv);  //Inserindo cuidadores do arquivo na lista
-
 
     
     AssigningCaregiversToElderlyList(caregiverList, elderlyList);   //Atribuindo cuidadores aos idosos da lista    
@@ -34,19 +32,14 @@ int main(int argc, char ** argv){
     PrintElderlyList(elderlyList);
 
 
-    printf("point 1\n\n");
     PrintAllFriendsLists(elderlyList);
 
 
-    printf("point 2\n\n");
     ProcessListData(elderlyList);   //processando os dados de todos os idosos da lista
 
 
-    printf("point 3\n\n");
+    DeleteElderlyList(elderlyList);
+    DestructCaregiversList(caregiverList);
 
     return 0;
 }
-
-
-
-

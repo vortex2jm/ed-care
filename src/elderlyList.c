@@ -174,6 +174,8 @@ ElderlyList * AssigningCaregiversToElderlyList(CareList * caregiversList, Elderl
         }
     }
 
+    fclose(caregiversFile);
+
     return elderliesList;
 }
 
@@ -290,6 +292,8 @@ ElderlyList * AssigningElderliesFriends(ElderlyList * list){
         friends1 = list->first; 
         friends2 = list->first;
     };
+
+    fclose(supportFile);
     
     return list;
 }
@@ -312,6 +316,7 @@ void RemoveDeadElderlyFromFriendsLists(ElderlyList * list,char *name){
     }   
 }
 
+// ========================================================================================== //
 void PrintAllFriendsLists(ElderlyList * list){
 
     Cell * current = list->first;;
@@ -324,4 +329,28 @@ void PrintAllFriendsLists(ElderlyList * list){
         current = current->next;
     }
 
+}
+
+void DeleteElderlyList(ElderlyList * list){
+
+    Cell * current, * next;
+    current = list->first;
+
+    if(list){
+
+        while(current){
+
+            if(current->caregivers) DestructElderliesCaregiversList(current->caregivers);
+
+            if(current->friends) DestructElderlyFriendsList(current->friends);
+
+            if(current->elderly) KillElderly(current->elderly);
+
+            next = current->next;
+            free(current);
+            current = next;           
+        }
+
+        free(list);
+    }
 }
