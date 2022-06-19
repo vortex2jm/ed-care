@@ -1,0 +1,5 @@
+#FINALIZAÇÃO DO TRABALHO#
+
+- Revisar condição de chamada de amigos em caso de queda.
+- Comentar funções públicas e privadas
+- Deletar funções inutilizadas
