@@ -9,6 +9,7 @@ struct sensors{
     int fall;
 
 };
+
 // Private function ================================================================================== //
 SensorsData * RegisterSensorsData(float temperature, long int latitude, long int longitude, int fall){
 
@@ -39,7 +40,6 @@ SensorsData ** CreateSensorsDataArray(int size, FILE * file){
 
         fscanfRtn = fscanf(file, "%f;%ld;%ld;%d", &temperature, &latitude, &longitude, &fall);
         
-
         if(fscanfRtn != 4){ // If return != 4, elderly died
 
             for(int y=x; y<size;y++){
@@ -47,15 +47,10 @@ SensorsData ** CreateSensorsDataArray(int size, FILE * file){
             }
             break;
         } 
-        
-        data[x] = RegisterSensorsData(temperature, latitude, longitude, fall);  // Filling sensors data array
-        
-        
+        data[x] = RegisterSensorsData(temperature, latitude, longitude, fall);  // Filling sensors data array   
     }
-
     return data;
 }
-
 
 // ============================================================================================================= //
 void PrintData(SensorsData * data){
@@ -63,12 +58,6 @@ void PrintData(SensorsData * data){
     if(!data) return;
     //TEST ...........................
     printf("%ld %ld %d %.2f\n", data->coordinates[0], data->coordinates[1], data->fall,data->temperature);
-    
-    /*
-    printf("%ld %ld\n", data->coordinates[0], data->coordinates[1]);
-    printf("queda: %d\n", data->fall);
-    printf("temperatura: %.2f\n\n", data->temperature);
-    */
 }
 
 // ======================================================================================== //
@@ -89,6 +78,7 @@ int ReturnFall(SensorsData * data){
     return data->fall;
 }
 
+// ======================================================================================== //
 int AnalysisSensorsData(SensorsData * data){
 
     if(data->fall) return 1;
@@ -100,6 +90,7 @@ int AnalysisSensorsData(SensorsData * data){
     return 0;
 }
 
+// ======================================================================================== //
 int IsFourthLowFever(SensorsData ** data, int currentIndex){
 
     int lowFeverCounter=0;
@@ -122,6 +113,7 @@ int IsFourthLowFever(SensorsData ** data, int currentIndex){
     return 0;
 }
 
+// ======================================================================================== //
 void DeleteSensorsDataArray(SensorsData ** array, int size){
 
     if(array){

@@ -20,6 +20,7 @@ char * FileFirstLine(char * way){
     return firstLine;
 }
 
+//====================================================================//
 double Distance(long int * coordinates1, long int * coordinates2){
 
     // printf("%ld / %ld   &&   %ld / %ld\n", coordinates1[0], coordinates1[1], coordinates2[0], coordinates2[1]);
@@ -36,11 +37,3 @@ double Distance(long int * coordinates1, long int * coordinates2){
 
     return distance;
 }
-
-
-
-
-
-
-
-

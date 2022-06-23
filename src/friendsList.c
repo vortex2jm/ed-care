@@ -23,7 +23,6 @@ struct friends_list {
 
 };
 
-
 // Public functions ================================================================//
 Friends_List * CreateFriendsElderlyList(){
     Friends_List * list = malloc(sizeof(Friends_List));
@@ -104,6 +103,7 @@ void DestructOneFriendFromList(Friends_List * friends, char *name){
     }
 }
 
+// =================================================================================== //
 void PrintTest(Friends_List * friends,char * name){
     Friends_Cell *friend = friends->first;
     
@@ -117,7 +117,7 @@ void PrintTest(Friends_List * friends,char * name){
     printf("\n");           
 }
 
-
+// =================================================================================== //
 Elderly * LessFriendDistance(Friends_List * list, long int * coordinates, int index){
 
     if(!list) return NULL;
@@ -131,23 +131,27 @@ Elderly * LessFriendDistance(Friends_List * list, long int * coordinates, int in
 
             if(!ReturnSensorDataByIndex(current->elderly, index)){}
 
-            else if(!ReturnFall(ReturnSensorDataByIndex(current->elderly, index)) &&
-            ReturnTemperature(ReturnSensorDataByIndex(current->elderly, index)) < 38 &&
-            !IsFourthLowFever(ReturnAllData(current->elderly), index)){
+            else lessDistanceFriend = current->elderly;
 
-                lessDistanceFriend = current->elderly;
-            }
+            // else if(!ReturnFall(ReturnSensorDataByIndex(current->elderly, index)) &&
+            // ReturnTemperature(ReturnSensorDataByIndex(current->elderly, index)) < 38 &&
+            // !IsFourthLowFever(ReturnAllData(current->elderly), index)){
+
+            //     lessDistanceFriend = current->elderly;
+            // }
+
         }
 
         else{
 
             if(!ReturnSensorDataByIndex(current->elderly, index)){}
 
-            else if((!ReturnFall(ReturnSensorDataByIndex(current->elderly, index)) &&
-            ReturnTemperature(ReturnSensorDataByIndex(current->elderly, index)) < 38 &&
-            !IsFourthLowFever(ReturnAllData(current->elderly), index))){
-
-
+            // else if((!ReturnFall(ReturnSensorDataByIndex(current->elderly, index)) &&
+            // ReturnTemperature(ReturnSensorDataByIndex(current->elderly, index)) < 38 &&
+            // !IsFourthLowFever(ReturnAllData(current->elderly), index)))
+            
+            else
+            {
                 if(Distance(coordinates, ReturnCoordinates(ReturnSensorDataByIndex(current->elderly, index)))
                 < Distance(coordinates, ReturnCoordinates(ReturnSensorDataByIndex(lessDistanceFriend, index))))
                 {

@@ -1,6 +1,5 @@
 #ifndef file_manager_h
 #define file_manager_h
-#include <math.h>
 
 char * FileFirstLine(char * way);
 

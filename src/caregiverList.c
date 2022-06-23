@@ -59,11 +59,11 @@ CareList * InsertCaregiversFromFileIntoList(CareList * list, char ** argv){
     char * name, caregiverFileWay[100];
     FILE * caregiverFile;
 
-    name = strtok(FileFirstLine("./tests/Teste3/Entrada/cuidadores.txt"), ";");
+    name = strtok(FileFirstLine("./cuidadores.txt"), ";");
 
     while(name != NULL){
 
-        sprintf(caregiverFileWay,"./tests/Teste3/Entrada/%s.txt", name);
+        sprintf(caregiverFileWay,"./%s.txt", name);
         caregiverFile = fopen(caregiverFileWay, "r");
 
         InsertOneCareGiver(list, RegisterCaregiver(name,
@@ -111,7 +111,7 @@ Caregiver * ReturnCaregiverByName(CareList * carelist, char * name){
     return aux->caregiver;
 }
 
-
+// ==================================================================================================== //
 Caregiver * LessCaregiverDistance(long int * coordinates, CareList * carelist, int index){
 
     if(!carelist) return NULL;
@@ -124,9 +124,6 @@ Caregiver * LessCaregiverDistance(long int * coordinates, CareList * carelist, i
 
 
     while(current){
-
-        // printf("%lf / %lf\n", Distance(coordinates, ReturnCaregiverLocation(current->caregiver, index)),
-        // Distance(coordinates, ReturnCaregiverLocation(lessDistanceCaregiver, index)));
 
         if(Distance(coordinates, ReturnCaregiverLocation(current->caregiver, index)) 
         < Distance(coordinates, ReturnCaregiverLocation(lessDistanceCaregiver, index))
@@ -141,6 +138,7 @@ Caregiver * LessCaregiverDistance(long int * coordinates, CareList * carelist, i
     return lessDistanceCaregiver;
 }
 
+// ==================================================================================================== //
 void DestructCaregiversList(CareList * list){
 
     Cell * current = list->first;
@@ -161,6 +159,7 @@ void DestructCaregiversList(CareList * list){
     }
 }
 
+// ==================================================================================================== //
 void DestructElderliesCaregiversList(CareList * list){
 
     Cell * current, * next;

@@ -1,5 +1,5 @@
-#ifndef friend_elder_h
-#define friend_elder_h 
+#ifndef friends_list_h
+#define friends_list_h 
 #include "elderly.h"
 
 typedef struct friends_list Friends_List;

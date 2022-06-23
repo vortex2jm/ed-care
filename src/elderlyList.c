@@ -31,14 +31,6 @@ struct cell {
 };
 
 // Private funcion===============================================================================//
-/*
-#Function to insert only one elderly in to the list#
-
--> It can not be accessed by main function, because elderlies can be added in to the
-list by files only
-
-*Main function doesn't has "elderly.h" 
-*/
 void InsertOneElderly(ElderlyList * list, Elderly * elderly, Friends_List * friends_list, CareList * caregivers){
      
     Cell * newCell = malloc(sizeof(Cell));
@@ -64,8 +56,6 @@ void InsertOneElderly(ElderlyList * list, Elderly * elderly, Friends_List * frie
 }
 
 // Public functions =========================================================//
-
-
 ElderlyList * CreateElderlyList(){
 
     ElderlyList * list = calloc(1,sizeof(ElderlyList));
@@ -84,11 +74,11 @@ ElderlyList * InsertElderliesFromFileIntoList(ElderlyList * list, char ** argv){
 
 
     // separating names from first line
-    name = strtok(FileFirstLine("./tests/Teste3/Entrada/apoio.txt"),";"); 
+    name = strtok(FileFirstLine("./apoio.txt"),";"); 
 
     while(name != NULL){
         
-        sprintf(elderlyFileWay, "./tests/Teste3/Entrada/%s.txt", name);
+        sprintf(elderlyFileWay, "./%s.txt", name);
         elderlyFile = fopen(elderlyFileWay, "r");
         
         
@@ -140,7 +130,7 @@ ElderlyList * AssigningCaregiversToElderlyList(CareList * caregiversList, Elderl
     Cell * aux;
     
 
-    caregiversFile = fopen("./tests/Teste3/Entrada/cuidadores.txt", "r");
+    caregiversFile = fopen("./cuidadores.txt", "r");
     fscanf(caregiversFile, "%*[^\n]\n");    //  deleting first line
 
 
@@ -258,26 +248,31 @@ void ProcessListData(ElderlyList * list){
 
 // ========================================================================================== //
 Cell * ReturnElderlyCell(Cell *friend,char string[50],Elderly * elder){
+    
     while(friend != NULL && strcmp(string,ElderlyName(friend->elderly)) != 0){
         friend = friend->next; 
     };
+    
     return friend;
 }
 
 // ========================================================================================== //
 ElderlyList * AssigningElderliesFriends(ElderlyList * list){
+    
     FILE * supportFile;
     char lineFile[100],firstLine[100],*assistant,string1[100],string2[100];
     Cell * friends1 = list->first,* friends2 = list->first;
     int i = 0;
     
-    
-    supportFile = fopen("./tests/Teste3/Entrada/apoio.txt", "r");
+
+    supportFile = fopen("./apoio.txt", "r");
     fscanf(supportFile, "%[^\n]\n", firstLine);
     
     while(fscanf(supportFile,"%[^\n]\n",lineFile) != EOF){
+
         assistant = strtok(lineFile,";");
         while(assistant != NULL){
+            
             if (i == 0){strcpy(string1,assistant); i = 1;}
             else {strcpy(string2,assistant); i = 0;}
             assistant = strtok(NULL,";");
@@ -300,18 +295,20 @@ ElderlyList * AssigningElderliesFriends(ElderlyList * list){
 
 // ========================================================================================== //
 void RemoveDeadElderlyFromFriendsLists(ElderlyList * list,char *name){
+    
     Cell * elder = list->first;
     
     while (elder != NULL){
+        
         if (strcmp(name,ElderlyName(elder->elderly)) == 0){
             printf("Idoso morto > %s\n",ElderlyName(elder->elderly));
             DestructElderlyFriendsList(elder->friends);
         }
+
         else {
             DestructOneFriendFromList(elder->friends, name);
             printf("--%s\n",ElderlyName(elder->elderly));
         }
-
         elder = elder->next;
     }   
 }
@@ -322,15 +319,16 @@ void PrintAllFriendsLists(ElderlyList * list){
     Cell * current = list->first;;
 
     printf("\n================Idosos e suas listas de amigos==============\n");
+    
     while(current){
 
         PrintTest(current->friends, ElderlyName(current->elderly));
 
         current = current->next;
     }
-
 }
 
+// ========================================================================================== //
 void DeleteElderlyList(ElderlyList * list){
 
     Cell * current, * next;
@@ -350,7 +348,6 @@ void DeleteElderlyList(ElderlyList * list){
             free(current);
             current = next;           
         }
-
         free(list);
     }
 }

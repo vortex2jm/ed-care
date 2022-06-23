@@ -15,7 +15,7 @@ PURPLE = "\033[1;35m"
 RESET_COLOR = "\033[0m"
 
 
-all: clean create_directories $(O_FILES) create_binary
+all: create_directories $(O_FILES) create_binary
 
 %.o: ./src/%.c ./include/%.h
 	@echo $(YELLOW)
@@ -28,31 +28,30 @@ create_directories:
 	@echo $(PURPLE)
 	@echo Creating and organizing directories...
 	@mkdir $(OBJ_DIR)
-	@mkdir $(EXEC_DIR)
 	@echo $(RESET_COLOR)
 
 create_binary:
 	@echo $(YELLOW)
-	@echo Creating binary file...
-	@$(COMPILER) -o $(EXEC_DIR)/$(NAME) $(OBJ_DIR)/$(O_FILES) $(FLAGS)
+	@echo Creating executable file...
+	@$(COMPILER) -o $(NAME) $(OBJ_DIR)/$(O_FILES) $(FLAGS)
 	@echo $(RESET_COLOR)
 
 clean:
 	@echo $(RED)
-	@echo Cleaning tree...
-	@rm -rf $(OBJ_DIR) $(EXEC_DIR) *.txt *.o
+	@echo Cleaning directory...
+	@rm -rf $(OBJ_DIR) *.txt *.o edcare.out
 	@echo $(RESET_COLOR)
 
 run:
 	@echo $(CYAN)
 	@echo Running program...
 	@echo $(RESET_COLOR)
-	@./bin/$(NAME) $(r)
+	@./$(NAME) $(r)
 
 valgrind:
 	@echo $(CYAN)
 	@echo Running valgrind on $(NAME)
 	@echo $(RESET_COLOR)
-	@valgrind $(EXEC_DIR)/$(NAME)
+	@valgrind ./$(NAME) $(r)
 
-again: all run
+again: clean all run
