@@ -292,25 +292,6 @@ ElderlyList * AssigningElderliesFriends(ElderlyList * list){
     return list;
 }
 
-// ========================================================================================== //
-void RemoveDeadElderlyFromFriendsLists(ElderlyList * list,char *name){
-    
-    Cell * elder = list->first;
-    
-    while (elder != NULL){
-        
-        if (strcmp(name,ElderlyName(elder->elderly)) == 0){
-            printf("Idoso morto > %s\n",ElderlyName(elder->elderly));
-            DestructElderlyFriendsList(elder->friends);
-        }
-
-        else {
-            DestructOneFriendFromList(elder->friends, name);
-            printf("--%s\n",ElderlyName(elder->elderly));
-        }
-        elder = elder->next;
-    }   
-}
 
 // ========================================================================================== //
 void PrintAllFriendsLists(ElderlyList * list){
@@ -321,7 +302,7 @@ void PrintAllFriendsLists(ElderlyList * list){
     
     while(current){
 
-        PrintTest(current->friends, ElderlyName(current->elderly));
+        PrintFriendsList(current->friends, ElderlyName(current->elderly));
 
         current = current->next;
     }

@@ -104,7 +104,7 @@ void DestructOneFriendFromList(Friends_List * friends, char *name){
 }
 
 // =================================================================================== //
-void PrintTest(Friends_List * friends,char * name){
+void PrintFriendsList(Friends_List * friends,char * name){
     Friends_Cell *friend = friends->first;
     
     printf("\n%s :",name);

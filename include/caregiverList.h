@@ -5,6 +5,8 @@
 //Definindo o tipo Carelist(lista de cuidadores)
 typedef struct carelist CareList;
 
+
+// ======================================================================================== //
 /*Função para criar uma lista de cuidadores vazia
 RECEBE:
     -> void
@@ -14,6 +16,7 @@ RETORNA:
 CareList * CreateCareList();
 
 
+// ======================================================================================== //
 /*Função para inserir apenas um cuidador na lista de cuidadores
 RECEBE:
     -> list = lista de cuidadores
@@ -24,6 +27,7 @@ RETORNA:
 void InsertOneCareGiver(CareList * list, Caregiver * caregiver);
 
 
+// ======================================================================================== //
 /*Função para ler os cuidadores d arquivo "cuidadores.txt", abrir o arquivo
 /* de cada cuidador individualmente e inserí-los na lista de cuidadores
 RECEBE:
@@ -35,6 +39,7 @@ RETORNA:
 CareList * InsertCaregiversFromFileIntoList(CareList * list, char ** argv);
 
 
+// ======================================================================================== //
 /*Função para procurar um cuidador na lista por nome e retornar seu endereço de memória
 RECEBE:
     -> carelist = lista de cuidadores
@@ -45,6 +50,7 @@ RETORNA:
 Caregiver * ReturnCaregiverByName(CareList * carelist, char * name);
 
 
+// ======================================================================================== //
 /*Função para imprimir a lista de cuidadores no terminal
 RECEBE:
     -> list = lista de cuidadores
@@ -54,6 +60,7 @@ RETORNA:
 void PrintCaregiversList(CareList * list);
 
 
+// ======================================================================================== //
 /*Função para calcular qual é o cuidador com a menor distância em relação às
 /*coordenadas passadas em seus parâmetros
 RECEBE:
@@ -66,6 +73,8 @@ RETORNA:
 */
 Caregiver * LessCaregiverDistance(long int * coordinates, CareList * carelist, int index);
 
+
+// ======================================================================================== //
 /*Função para liberar o espaço de memória alocado para a lista de cuidadores principal
 RECEBE:
     -> list = lista de cuidadores
@@ -75,6 +84,7 @@ RETORNA:
 void DestructCaregiversList(CareList * list);
 
 
+// ======================================================================================== //
 /*Função para liberar o esaço de memória alocado para uma lista de cuidadores
 /*de um idoso espeífico
 RECEBE:

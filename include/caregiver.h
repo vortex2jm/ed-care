@@ -4,6 +4,8 @@
 // Definindo o tipo Caregiver(cuidador)
 typedef struct caregiver Caregiver;
 
+
+// ======================================================================================== //
 /*Função para alocar espaço para um novo cuidador
 RECEBE:
     -> name = nome
@@ -15,6 +17,7 @@ RETORNA:
 Caregiver * RegisterCaregiver(char * name, long int ** coordinates, int size);
 
 
+// ======================================================================================== //
 /*Função para ler e alocar espaço para os dados do cuidador(coordenadas)
 RECEBE:
     -> file = arquivo "CuidadorX.txt"(o arquivo deve estar aberto)
@@ -25,6 +28,7 @@ RETORNA:
 long int ** CareGiverDataReading(FILE * file, int size);
 
 
+// ======================================================================================== //
 /*Função para imprimir os dados do cuidador no terminal
 RECECBE:
     -> caregiver = ponteiro para cuidador
@@ -34,6 +38,7 @@ RETORNA:
 void PrintCareGiver(Caregiver * caregiver);
 
 
+// ======================================================================================== //
 /*Função para retornar o nome doo cuidador
 RECEBE:
     -> caregiver = ponteiro para cuidador
@@ -43,6 +48,7 @@ RETORNA:
 char * CaregiverName(Caregiver * caregiver);
 
 
+// ======================================================================================== //
 /*Função para liberar o espaço de memória alocado para um cuidador
 RECEBE:
     -> caregiver = ponteiro para cuidador
@@ -52,6 +58,7 @@ RETORNA:
 void EliminateCaregiver(Caregiver * caregiver);
 
 
+// ======================================================================================== //
 /*Função para retornar apenas uma coordenada do cuidador(latitude e longitude)
 RECEBE:
     -> caregiver = ponteiro para cuidador
