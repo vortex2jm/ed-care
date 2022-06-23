@@ -3,10 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/validation.h"
+#include "../include/fileManager.h"
 #include "../include/elderlyList.h"
 #include "../include/elderly.h"
-#include "../include/fileManager.h"
-#include "../include/sensorsData.h"
 #include "../include/friendsList.h"
 #include "../include/caregiverList.h"
 

@@ -67,12 +67,6 @@ void PrintCareGiver(Caregiver * caregiver){
 
     printf("nome: %s\n", caregiver->name);
 
-    //TRECHO PARA IMPRIMIR AS COORDENADAS LIDAS
-    // for(int x=0; x<caregiver->size;x++){
-
-    //     printf("coordenadas: %ld , %ld\n", caregiver->coordinates[x][0], caregiver->coordinates[x][1]);
-    // }
-    // printf("\n");
 }
 
 // ==================================================================================================== //
