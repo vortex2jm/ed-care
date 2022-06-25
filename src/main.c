@@ -9,9 +9,10 @@
 
 int main(int argc, char ** argv){
 
-    // Verifying if have args
+    // Verificando se o programa foi executado com algum argumento
     ValidateArg(argc);
 
+    // Criando uma lista de cuidadores e uma lista de idosos vazias
     ElderlyList * elderlyList = CreateElderlyList();
     CareList * caregiverList = CreateCareList();
 
@@ -24,22 +25,18 @@ int main(int argc, char ** argv){
     AssigningElderliesFriends(elderlyList); //Atribuindo os amigos dos idosos da lista
 
 
+    //Imprimindo alguns dados no terminal
     printf("=============== Lista com todos os cuidadores =================\n\n");
     PrintCaregiversList(caregiverList);
-
-
     printf("=============== Idosos e suas listas de cuidadores ==============\n\n");
     PrintElderlyList(elderlyList);
-
-
     PrintAllFriendsLists(elderlyList);
 
 
-    ProcessListData(elderlyList);   //processando os dados de todos os idosos da lista
+    ProcessListData(elderlyList);   //processando os dados de todos os idosos da lista e gerando as saídas
 
-
-    DeleteElderlyList(elderlyList);
-    DestructCaregiversList(caregiverList);
+    DeleteElderlyList(elderlyList); //Liberando a memória alocada para a lista de idosos
+    DestructCaregiversList(caregiverList);  //Liberando a memória alocada para a lista de cuidadores
 
     return 0;
 }

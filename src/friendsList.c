@@ -70,38 +70,6 @@ void DestructElderlyFriendsList(Friends_List * friends){
     free(friends);
 }
 
-// =================================================================================== //
-void DestructOneFriendFromList(Friends_List * friends, char *name){
-    
-    int i =0;
-
-    if (friends->first != NULL) {
-        Friends_Cell *current  = friends->first;
-        Friends_Cell *previous = NULL;
-
-        while (current != NULL){
-            if (strcmp(ElderlyName(current->elderly),name) == 0){ 
-                i = 1;
-                break; 
-            }
-            previous = current;
-            current = current->next;
-        }
-        if (i){
-            if (friends->first == current){
-                friends->first = current->next;
-            }
-            else if (friends->last == current){
-                friends->last = previous;
-                previous->next = NULL;
-            }
-            else {
-                previous->next = current->next;
-            }
-            free(current);  
-        }     
-    }
-}
 
 // =================================================================================== //
 void PrintFriendsList(Friends_List * friends,char * name){
