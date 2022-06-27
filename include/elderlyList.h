@@ -38,7 +38,7 @@ void PrintElderlyList(ElderlyList * list);
 
 
 // ======================================================================================== //
-/*Função para atribuir os cuidadores da lista de cuidadres princcipal às listas de cuidadores dos idosos
+/*Função para atribuir os cuidadores da lista de cuidadres principal às listas de cuidadores dos idosos
 RECEBE:
     -> caregiversList = ponteiro para lista de cuidadores principal
     -> elderliesList = ponteiro para a lista de idosos

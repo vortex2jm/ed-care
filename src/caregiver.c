@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../include/caregiver.h"
 
+// Estrutura do cuidador
 struct caregiver{
 
     char * name;
@@ -11,7 +12,7 @@ struct caregiver{
 };
 
 
-// Public Functions ======================================================================//
+// Funções públicas ======================================================================//
 Caregiver * RegisterCaregiver(char * name, long int ** coordinates, int size){
 
     Caregiver * newCaregiver = (Caregiver*)malloc(sizeof(Caregiver));
@@ -23,10 +24,12 @@ Caregiver * RegisterCaregiver(char * name, long int ** coordinates, int size){
     return newCaregiver;
 }
 
+
 // ========================================================================================= //
 long int ** CareGiverDataReading(FILE * file, int size){
 
     long int ** data = malloc(sizeof(long int *) * size);
+    
     for(int x=0; x<size;x++){
         data[x] = malloc(sizeof(long int) * 2);
     }
@@ -38,6 +41,7 @@ long int ** CareGiverDataReading(FILE * file, int size){
 
     return data;
 }
+
 
 // ==================================================================================================== //
 void EliminateCaregiver(Caregiver * caregiver){
@@ -60,20 +64,22 @@ void EliminateCaregiver(Caregiver * caregiver){
     }
 }
 
+
 // ==================================================================================================== //
 void PrintCareGiver(Caregiver * caregiver){
 
     if(!caregiver) return;
 
     printf("nome: %s\n", caregiver->name);
-
 }
+
 
 // ==================================================================================================== //
 char * CaregiverName(Caregiver * caregiver){
 
     return caregiver->name;
 }
+
 
 // ==================================================================================================== //
 long int * ReturnCaregiverLocation(Caregiver * caregiver, int index){

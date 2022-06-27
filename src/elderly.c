@@ -3,15 +3,17 @@
 #include <string.h>
 #include "../include/elderly.h"
 
+
+//Estrutura do idoso
 struct elderly {
 
     char * name;
-    SensorsData ** data;
-    int dataAmount;
-
+    SensorsData ** data;    //Vetor de dados
+    int dataAmount; //quantidade de elementos do vetor
 };
 
-// Public functions======================================================================== //
+
+// Funções públicas======================================================================== //
 Elderly * RegisterElderly(char * name, SensorsData ** data, int dataAmount){
 
     Elderly * newElderly = (Elderly*) malloc(sizeof(Elderly));
@@ -23,6 +25,7 @@ Elderly * RegisterElderly(char * name, SensorsData ** data, int dataAmount){
     return newElderly;
 }
 
+
 // ======================================================================================== //
 void PrintElderly(Elderly * elderly){
 
@@ -33,16 +36,20 @@ void PrintElderly(Elderly * elderly){
     else printf("nome do idoso: %s\n", elderly->name);
 }
 
+
 // ======================================================================================== //
 char * ElderlyName(Elderly * elderly){
 
     return elderly->name;
 }
 
+
+// ======================================================================================== //
 SensorsData * ReturnSensorDataByIndex(Elderly * elderly, int index){
 
     return elderly->data[index];
 }
+
 
 // ======================================================================================== //
 int ReturnDataAmount(Elderly * elderly){
@@ -50,11 +57,13 @@ int ReturnDataAmount(Elderly * elderly){
     return elderly->dataAmount;
 }
 
+
 // ======================================================================================== //
 SensorsData ** ReturnAllData(Elderly * elderly){
 
     return elderly->data;
 }   
+
 
 // ======================================================================================== //
 void KillElderly(Elderly * elderly){

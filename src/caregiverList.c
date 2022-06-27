@@ -8,12 +8,14 @@
 
 typedef struct cell Cell;
 
+//Sentinela
 struct carelist {
 
     Cell * first;
     Cell * last;
 };
 
+//Célula
 struct cell {
 
     Caregiver * caregiver;
@@ -21,7 +23,7 @@ struct cell {
 };
 
 
-// Public Functions ====================================================================//
+// Funções públicas ====================================================================//
 CareList * CreateCareList(){
 
     CareList * list = malloc(sizeof(CareList));
@@ -31,6 +33,7 @@ CareList * CreateCareList(){
 
     return list;
 }
+
 
 // ==================================================================================================== //
 void InsertOneCareGiver(CareList * list, Caregiver * caregiver){
@@ -52,6 +55,7 @@ void InsertOneCareGiver(CareList * list, Caregiver * caregiver){
         newCell->next = NULL;
     }
 }
+
 
 // ==================================================================================================== //
 CareList * InsertCaregiversFromFileIntoList(CareList * list, char ** argv){
@@ -78,6 +82,7 @@ CareList * InsertCaregiversFromFileIntoList(CareList * list, char ** argv){
     return list;
 }
 
+
 // ==================================================================================================== //
 void PrintCaregiversList(CareList * list){
 
@@ -98,6 +103,7 @@ void PrintCaregiversList(CareList * list){
     }
 }
 
+
 // ==================================================================================================== //
 Caregiver * ReturnCaregiverByName(CareList * carelist, char * name){
 
@@ -110,6 +116,7 @@ Caregiver * ReturnCaregiverByName(CareList * carelist, char * name){
 
     return aux->caregiver;
 }
+
 
 // ==================================================================================================== //
 Caregiver * LessCaregiverDistance(long int * coordinates, CareList * carelist, int index){
@@ -131,12 +138,11 @@ Caregiver * LessCaregiverDistance(long int * coordinates, CareList * carelist, i
 
             lessDistanceCaregiver = current->caregiver;
         }
-
         current = current->next;
     }
-
     return lessDistanceCaregiver;
 }
+
 
 // ==================================================================================================== //
 void DestructCaregiversList(CareList * list){
@@ -154,10 +160,10 @@ void DestructCaregiversList(CareList * list){
             free(current);
             current = next;
         }
-
         free(list);
     }
 }
+
 
 // ==================================================================================================== //
 void DestructElderliesCaregiversList(CareList * list){
@@ -173,7 +179,6 @@ void DestructElderliesCaregiversList(CareList * list){
             free(current);
             current = next;
         }
-
         free(list);
     }
 }

@@ -2,15 +2,16 @@
 #include <stdlib.h>
 #include "../include/sensorsData.h"
 
+//Estrutura dos dados do sensor
 struct sensors{
 
     float temperature;
-    long int coordinates[2];
-    int fall;
-
+    long int coordinates[2];    //vetor com latitude e longitude
+    int fall;   //indicador de queda
 };
 
-// Private function ================================================================================== //
+
+// Função privada (Não pode ser acessada por outro TAD)================================================================================== //
 SensorsData * RegisterSensorsData(float temperature, long int latitude, long int longitude, int fall){
 
     SensorsData * newSensorsData = malloc(sizeof(SensorsData));
@@ -23,12 +24,14 @@ SensorsData * RegisterSensorsData(float temperature, long int latitude, long int
     return newSensorsData; 
 }
 
-// Public functions =====================================================================================//
+
+// Funções públicas =====================================================================================//
 void DeleteSensorsData(SensorsData * data){
 
     if(data) free(data);
 }
 
+// ======================================================================================== //
 SensorsData ** CreateSensorsDataArray(int size, FILE * file){
 
     SensorsData ** data = calloc(size, sizeof(SensorsData*));

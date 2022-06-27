@@ -1,4 +1,3 @@
-// Elderly list functions implementation
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,10 +8,10 @@
 #include "../include/friendsList.h"
 #include "../include/caregiverList.h"
 
-// defining cell type
-typedef struct cell Cell;
 
-// sentinel 
+typedef struct cell Cell;
+ 
+ //Sentinela
 struct elderly_list {
 
     Cell * first;
@@ -20,7 +19,7 @@ struct elderly_list {
     
 };
 
-// cell structure
+//Estrutura da célula
 struct cell {
 
     Elderly * elderly;
@@ -29,7 +28,7 @@ struct cell {
     CareList * caregivers;
 };
 
-// Private funcion===============================================================================//
+// Função privada (Não pode ser acessada pelo cliente)===============================================================================//
 void InsertOneElderly(ElderlyList * list, Elderly * elderly, Friends_List * friends_list, CareList * caregivers){
      
     Cell * newCell = malloc(sizeof(Cell));
@@ -54,7 +53,8 @@ void InsertOneElderly(ElderlyList * list, Elderly * elderly, Friends_List * frie
     }
 }
 
-// Public functions =========================================================//
+
+// Funções públicas =========================================================//
 ElderlyList * CreateElderlyList(){
 
     ElderlyList * list = calloc(1,sizeof(ElderlyList));
@@ -63,6 +63,7 @@ ElderlyList * CreateElderlyList(){
 
     return list;
 }
+
 
 // ========================================================================================== //
 ElderlyList * InsertElderliesFromFileIntoList(ElderlyList * list, char ** argv){
@@ -95,6 +96,7 @@ ElderlyList * InsertElderliesFromFileIntoList(ElderlyList * list, char ** argv){
     }
     return list;
 }
+
 
 // ========================================================================================== //
 void PrintElderlyList(ElderlyList * list){
@@ -144,7 +146,7 @@ ElderlyList * AssigningCaregiversToElderlyList(CareList * caregiversList, Elderl
         while(name != NULL){
 
             
-            if(!flag){  // if !flag, it's in first name. First name's elderly name
+            if(!flag){  // if !flag, it's in first name. First name is elderly name
 
                 while(aux && strcmp(name, ElderlyName(aux->elderly))){      // finding elderly on elderliy list
                     aux = aux->next;    // finding right elderly at cells
@@ -152,7 +154,7 @@ ElderlyList * AssigningCaregiversToElderlyList(CareList * caregiversList, Elderl
                 flag = 1;
             }  
 
-            else{   // next names are caregivers names, then, program will insert them in to elderly caregivers list
+            else{   // next names are caregivers names, then, program will insert them into elderly caregivers list
                 
                 // inserting caregiver from main caregivers list on elderly caregivers list
                 // This insertion is done by name 
@@ -167,6 +169,7 @@ ElderlyList * AssigningCaregiversToElderlyList(CareList * caregiversList, Elderl
 
     return elderliesList;
 }
+
 
 // ========================================================================================== //
 void ProcessListData(ElderlyList * list){
@@ -193,17 +196,17 @@ void ProcessListData(ElderlyList * list){
 
             else if(!AnalysisSensorsData(ReturnSensorDataByIndex(current->elderly, x))){
 
-                fprintf(file, "tudo ok\n");//tudo normal
+                fprintf(file, "tudo ok\n"); //everything's ok
             } 
 
-            else if(AnalysisSensorsData(ReturnSensorDataByIndex(current->elderly, x)) == 1){    //queda
+            else if(AnalysisSensorsData(ReturnSensorDataByIndex(current->elderly, x)) == 1){    //fall
 
                 fprintf(file, "queda, acionou %s\n", CaregiverName(LessCaregiverDistance(
                                                   ReturnCoordinates(ReturnSensorDataByIndex(
                                                     current->elderly, x)), current->caregivers, x)));
             }
 
-            else if(AnalysisSensorsData(ReturnSensorDataByIndex(current->elderly, x)) == 2){    //febre alta
+            else if(AnalysisSensorsData(ReturnSensorDataByIndex(current->elderly, x)) == 2){    //High fever
 
                 fprintf(file, "febre alta, acionou %s\n", CaregiverName(LessCaregiverDistance(
                                                   ReturnCoordinates(ReturnSensorDataByIndex(
@@ -211,7 +214,7 @@ void ProcessListData(ElderlyList * list){
                 lowFeverCounter = 0;
             }
 
-            else if(AnalysisSensorsData(ReturnSensorDataByIndex(current->elderly, x)) == 3){    //febre baixa
+            else if(AnalysisSensorsData(ReturnSensorDataByIndex(current->elderly, x)) == 3){    //Low fever
                 
                 if(lowFeverCounter == 3){
                     fprintf(file, "febre baixa pela quarta vez, acionou %s\n", CaregiverName(LessCaregiverDistance(
@@ -235,7 +238,6 @@ void ProcessListData(ElderlyList * list){
                                                                                      current->elderly, x)), x)));
 
                     }
-                    // febre baixa, criar função para ver qual amigo está mais perto
                     lowFeverCounter++;
                 }
             }
@@ -245,8 +247,9 @@ void ProcessListData(ElderlyList * list){
     }
 }
 
+
 // ========================================================================================== //
-Cell * ReturnElderlyCell(Cell *friend,char string[50],Elderly * elder){
+Cell * ReturnElderlyCell(Cell *friend, char string[50], Elderly * elder){
     
     while(friend != NULL && strcmp(string,ElderlyName(friend->elderly)) != 0){
         friend = friend->next; 
@@ -254,6 +257,7 @@ Cell * ReturnElderlyCell(Cell *friend,char string[50],Elderly * elder){
     
     return friend;
 }
+
 
 // ========================================================================================== //
 ElderlyList * AssigningElderliesFriends(ElderlyList * list){
@@ -307,6 +311,7 @@ void PrintAllFriendsLists(ElderlyList * list){
         current = current->next;
     }
 }
+
 
 // ========================================================================================== //
 void DeleteElderlyList(ElderlyList * list){

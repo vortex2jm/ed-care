@@ -2,8 +2,10 @@
 #define elderly_h
 #include "sensorsData.h"
 
+
 // Definindo o tipo Elderly(idoso)
 typedef struct elderly Elderly;
+
 
 // ======================================================================================== //
 /*Função para alocar memória para um novo idoso

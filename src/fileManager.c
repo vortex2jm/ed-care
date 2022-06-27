@@ -3,8 +3,9 @@
 #include <math.h>
 #include "../include/fileManager.h"
 
+//Arquivo com funções auxiliares (Funções utilizadas em mais de um TAD)
 
-// Public functions ===============================================//
+// funções públicas ===============================================//
 char * FileFirstLine(char * way){
 
     FILE * file;
@@ -21,10 +22,9 @@ char * FileFirstLine(char * way){
     return firstLine;
 }
 
+
 //====================================================================//
 double Distance(long int * coordinates1, long int * coordinates2){
-
-    // printf("%ld / %ld   &&   %ld / %ld\n", coordinates1[0], coordinates1[1], coordinates2[0], coordinates2[1]);
 
     double distance, cat1, cat2, cat1square, cat2square; 
     

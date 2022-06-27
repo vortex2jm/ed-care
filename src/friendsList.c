@@ -6,8 +6,11 @@
 #include "../include/friendsList.h"
 #include "../include/fileManager.h"
 
+
 typedef struct friends_cell Friends_Cell;
 
+
+//Célula
 struct friends_cell {
 
     Elderly * elderly;
@@ -15,7 +18,7 @@ struct friends_cell {
 
 };
 
-// sentinel 
+// Sentinela 
 struct friends_list {
 
     Friends_Cell *first;
@@ -23,8 +26,10 @@ struct friends_list {
 
 };
 
-// Public functions ================================================================//
+
+// Funções públicas ================================================================//
 Friends_List * CreateFriendsElderlyList(){
+    
     Friends_List * list = malloc(sizeof(Friends_List));
     list->first = NULL;
     list->last = NULL;
@@ -32,13 +37,13 @@ Friends_List * CreateFriendsElderlyList(){
     return list;
 }
 
+
 // =================================================================================== //
 Friends_List * InsertOneFriendIntoList(Elderly * elderly,Friends_List * friends){
     
     Friends_Cell *friend = malloc(sizeof(Friends_Cell));
     friend->elderly = elderly;
     
-
     if (friends->first == NULL){
         friends->first = friend;
         friends->last = friend;
@@ -53,6 +58,7 @@ Friends_List * InsertOneFriendIntoList(Elderly * elderly,Friends_List * friends)
     
     return friends;
 }
+
 
 // =================================================================================== //
 void DestructElderlyFriendsList(Friends_List * friends){
@@ -73,6 +79,7 @@ void DestructElderlyFriendsList(Friends_List * friends){
 
 // =================================================================================== //
 void PrintFriendsList(Friends_List * friends,char * name){
+   
     Friends_Cell *friend = friends->first;
     
     printf("\n%s :",name);
@@ -84,6 +91,7 @@ void PrintFriendsList(Friends_List * friends,char * name){
 
     printf("\n");           
 }
+
 
 // =================================================================================== //
 Elderly * LessFriendDistance(Friends_List * list, long int * coordinates, int index){
@@ -100,23 +108,11 @@ Elderly * LessFriendDistance(Friends_List * list, long int * coordinates, int in
             if(!ReturnSensorDataByIndex(current->elderly, index)){}
 
             else lessDistanceFriend = current->elderly;
-
-            // else if(!ReturnFall(ReturnSensorDataByIndex(current->elderly, index)) &&
-            // ReturnTemperature(ReturnSensorDataByIndex(current->elderly, index)) < 38 &&
-            // !IsFourthLowFever(ReturnAllData(current->elderly), index)){
-
-            //     lessDistanceFriend = current->elderly;
-            // }
-
         }
 
         else{
 
             if(!ReturnSensorDataByIndex(current->elderly, index)){}
-
-            // else if((!ReturnFall(ReturnSensorDataByIndex(current->elderly, index)) &&
-            // ReturnTemperature(ReturnSensorDataByIndex(current->elderly, index)) < 38 &&
-            // !IsFourthLowFever(ReturnAllData(current->elderly), index)))
             
             else
             {
